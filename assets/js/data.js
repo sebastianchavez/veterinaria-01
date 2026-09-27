@@ -40,7 +40,7 @@ const SERVICIOS = [
     descripcion: 'Esquemas completos de vacunación para cachorros y adultos, con carnet digital de seguimiento.',
     descripcionCorta: 'Esquemas completos de vacunación.',
     icono: 'bi-eyedropper',
-    imagen: 'https://images.unsplash.com/photo-1628009368231-7bb7b73a1d23?w=800&q=80',
+    imagen: 'https://images.pexels.com/photos/6234624/pexels-photo-6234624.jpeg?auto=compress&cs=tinysrgb&w=800',
     precioDesde: 280
   },
   {
@@ -68,7 +68,7 @@ const SERVICIOS = [
     descripcion: 'Atención de urgencias las 24 horas, los 365 días del año, con equipo médico en guardia.',
     descripcionCorta: 'Urgencias 24/7 los 365 días.',
     icono: 'bi-heart-pulse',
-    imagen: 'https://images.unsplash.com/photo-1601758228001-89f8d0a4d7c0?w=800&q=80',
+    imagen: 'https://images.pexels.com/photos/6235240/pexels-photo-6235240.jpeg?auto=compress&cs=tinysrgb&w=800',
     precioDesde: 950
   },
   {
@@ -77,7 +77,7 @@ const SERVICIOS = [
     descripcion: 'Baño medicado, corte de pelo, limpieza dental y un spa completo para consentir a tu mascota como se merece.',
     descripcionCorta: 'Baño, corte y limpieza dental.',
     icono: 'bi-droplet-half',
-    imagen: 'https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=800&q=80',
+    imagen: 'https://images.pexels.com/photos/19145888/pexels-photo-19145888.jpeg?auto=compress&cs=tinysrgb&w=800',
     precioDesde: 350
   },
   {
@@ -86,7 +86,7 @@ const SERVICIOS = [
     descripcion: 'Cortes de raza, trimming y estilismo profesional con groomers certificados.',
     descripcionCorta: 'Cortes de raza y estilismo.',
     icono: 'bi-scissors',
-    imagen: 'https://images.unsplash.com/photo-1599839575945-a9e118af1bd2?w=800&q=80',
+    imagen: 'https://images.pexels.com/photos/19145895/pexels-photo-19145895.jpeg?auto=compress&cs=tinysrgb&w=800',
     precioDesde: 480
   },
   {
@@ -153,7 +153,7 @@ const TESTIMONIOS = [
     mascota: 'Rocky (Bulldog Francés)',
     texto: 'La peluquería canina es increíble. Rocky siempre sale guapísimo y oliendo riquísimo. Los precios son justos y el personal muy amable.',
     estrellas: 5,
-    foto: 'https://images.unsplash.com/photo-1487412720507-e7ab3763c6f0?w=200&q=80'
+    foto: 'https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=200'
   }
 ];
 
