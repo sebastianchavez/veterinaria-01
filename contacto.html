@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contáctanos para agendar una cita o ante cualquier emergencia. Estamos disponibles 24/7 para tu mascota." />
+  <title>Contacto · Patitas Felices</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐾%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="brand-icon"><i class="bi bi-paw-fill"></i></span>
+        Patitas Felices
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="precios.html">Precios</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item ms-lg-2"><a class="nav-link btn-cta-nav" href="contacto.html">Agendar cita</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <h1 class="reveal">Hablemos <span class="text-mint">contigo</span></h1>
+      <nav aria-label="breadcrumb" class="reveal reveal-delay-1">
+        <ol class="breadcrumb breadcrumb-custom">
+          <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+          <li class="breadcrumb-item active">Contacto</li>
+        </ol>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== EMERGENCIA BANNER ===== -->
+  <section class="py-3" style="background:linear-gradient(135deg, #fee2e2, #fecaca);">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center flex-wrap gap-2 text-center">
+        <i class="bi bi-exclamation-triangle-fill text-danger fs-5"></i>
+        <strong class="text-danger">¿Es una emergencia?</strong>
+        <span class="text-dark">Llámanos de inmediato al</span>
+        <a href="tel:+525512345678" class="btn btn-danger btn-sm rounded-pill px-3">
+          <i class="bi bi-telephone-fill me-1"></i>+52 55 1234 5678
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMULARIO + INFO ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Form -->
+        <div class="col-lg-7 reveal">
+          <div class="form-card">
+            <h2 class="mb-2">Agenda tu cita</h2>
+            <p class="text-muted mb-4">Completa el formulario y te confirmaremos tu cita en menos de 2 horas hábiles.</p>
+            <form id="contactForm" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label" for="nombre">Nombre completo *</label>
+                  <input type="text" class="form-control" id="nombre" required minlength="3" />
+                  <div class="invalid-feedback">Por favor ingresa tu nombre completo.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="email">Email *</label>
+                  <input type="email" class="form-control" id="email" required />
+                  <div class="invalid-feedback">Necesitamos un email válido para contactarte.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="telefono">Teléfono *</label>
+                  <input type="tel" class="form-control" id="telefono" pattern="[0-9+\s\-\(\)]{10,}" required />
+                  <div class="invalid-feedback">Ingresa un teléfono válido (mínimo 10 dígitos).</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="mascota">Nombre de tu mascota *</label>
+                  <input type="text" class="form-control" id="mascota" required />
+                  <div class="invalid-feedback">¿Cómo se llama tu mascota?</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="servicio">Servicio de interés *</label>
+                  <select class="form-select" id="servicio" required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Consulta general</option>
+                    <option>Vacunación</option>
+                    <option>Cirugía menor</option>
+                    <option>Estética / Baño</option>
+                    <option>Peluquería canina</option>
+                    <option>Desparasitación</option>
+                    <option>Tienda / Alimentos</option>
+                    <option>Emergencia 24h</option>
+                    <option>Otro</option>
+                  </select>
+                  <div class="invalid-feedback">Selecciona el servicio que necesitas.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="fecha">Fecha preferida</label>
+                  <input type="date" class="form-control" id="fecha" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="mensaje">Cuéntanos más *</label>
+                  <textarea class="form-control" id="mensaje" rows="4" required minlength="10" placeholder="Describe brevemente el motivo de la consulta, síntomas o lo que necesites..."></textarea>
+                  <div class="invalid-feedback">Por favor cuéntanos más detalles (mínimo 10 caracteres).</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="acepto" required />
+                    <label class="form-check-label small text-muted" for="acepto">
+                      Acepto la <a href="privacidad.html" target="_blank">política de privacidad</a> y el tratamiento de mis datos.
+                    </label>
+                    <div class="invalid-feedback">Debes aceptar la política de privacidad.</div>
+                  </div>
+                </div>
+                <div class="col-12 d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-send-check me-2"></i>Enviar solicitud
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info lateral -->
+        <div class="col-lg-5">
+          <div class="contact-info reveal reveal-right">
+            <h3 class="mb-4">Información de contacto</h3>
+            <div class="info-item">
+              <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <div>
+                <h6>Dirección</h6>
+                <p>Av. Insurgentes Sur 1234<br>Col. Del Valle, CDMX, CP 03100</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon"><i class="bi bi-telephone-fill"></i></div>
+              <div>
+                <h6>Teléfonos</h6>
+                <p>
+                  <a href="tel:+525512345678" class="text-white">+52 55 1234 5678</a> — Citas<br>
+                  <a href="tel:+525587654321" class="text-white">+52 55 8765 4321</a> — Emergencias
+                </p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon"><i class="bi bi-envelope-fill"></i></div>
+              <div>
+                <h6>Email</h6>
+                <p>
+                  <a href="mailto:contacto@patitasfelices.mx" class="text-white">contacto@patitasfelices.mx</a>
+                </p>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="icon"><i class="bi bi-clock-fill"></i></div>
+              <div>
+                <h6>Horarios de atención</h6>
+                <table class="w-100 schedule-table">
+                  <tr><td class="day">Lun - Vie</td><td class="time">09:00 — 20:00</td></tr>
+                  <tr><td class="day">Sábado</td><td class="time">09:00 — 14:00</td></tr>
+                  <tr><td class="day">Domingo</td><td class="time">Solo emergencias</td></tr>
+                </table>
+              </div>
+            </div>
+
+            <h6 class="mt-4 mb-2 text-white">Síguenos en redes</h6>
+            <div class="d-flex gap-2 flex-wrap">
+              <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+              <a href="#" class="social-link" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            </div>
+
+            <div class="mt-4 p-3 rounded-3" style="background:rgba(255,255,255,.1);">
+              <strong><i class="bi bi-info-circle-fill me-2"></i>Tip:</strong>
+              <span class="small">Para emergencias fuera de horario, marca directamente al número de emergencias: <strong>+52 55 8765 4321</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAPA ===== -->
+  <section class="py-0">
+    <div class="container-fluid px-0">
+      <div class="ratio ratio-21x9" style="max-height:450px;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5982!2d-99.1700!3d19.3900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff40b763eb43%3A0x300b62f3f6a4a39!2sCDMX!5e0!3m2!1ses-419!2smx!4v1700000000000"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación Patitas Felices"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Preguntas frecuentes</h2>
+        <p>Tal vez tu respuesta está aquí.</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-9 reveal">
+          <div class="accordion accordion-flush" id="faqAccordion"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand">
+            <span class="brand-icon"><i class="bi bi-paw-fill"></i></span>
+            <span class="brand-name">Patitas Felices</span>
+          </div>
+          <p>Clínica veterinaria con atención 24h, equipo certificado y un compromiso genuino con el bienestar animal.</p>
+          <div class="social-links mt-3">
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-4">
+          <h5>Navegación</h5>
+          <ul>
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Inicio</a></li>
+            <li><a href="nosotros.html"><i class="bi bi-chevron-right"></i> Nosotros</a></li>
+            <li><a href="servicios.html"><i class="bi bi-chevron-right"></i> Servicios</a></li>
+            <li><a href="precios.html"><i class="bi bi-chevron-right"></i> Precios</a></li>
+            <li><a href="contacto.html"><i class="bi bi-chevron-right"></i> Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-4">
+          <h5>Horarios</h5>
+          <ul>
+            <li><strong>Lun-Vie:</strong> 09:00 — 20:00</li>
+            <li><strong>Sábados:</strong> 09:00 — 14:00</li>
+            <li><strong>Domingos:</strong> Solo emergencias 24h</li>
+            <li class="mt-2"><a href="tel:+525512345678"><i class="bi bi-telephone-fill"></i> +52 55 1234 5678</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-4">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacidad.html"><i class="bi bi-shield-lock"></i> Políticas de privacidad</a></li>
+            <li><a href="terminos.html"><i class="bi bi-file-text"></i> Términos y condiciones</a></li>
+          </ul>
+          <h5 class="mt-3">Ubicación</h5>
+          <p class="small mb-0">Av. Insurgentes Sur 1234<br>Col. Del Valle, CDMX</p>
+        </div>
+      </div>
+      <hr />
+      <div class="copyright">
+        © <span id="currentYear"></span> Patitas Felices · Hecho con <i class="bi bi-heart-fill text-danger"></i> para las mascotas
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:20px;border:none;">
+        <div class="modal-body p-5 text-center">
+          <div class="mb-3" style="width:80px;height:80px;background:var(--mint-100);color:var(--mint-600);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:3rem;">
+            <i class="bi bi-check-lg"></i>
+          </div>
+          <h3 class="mb-3" style="color:var(--mint-800);">¡Solicitud enviada!</h3>
+          <p class="text-muted">Hemos recibido tu solicitud. Nuestro equipo te contactará en menos de 2 horas hábiles para confirmar tu cita.</p>
+          <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">¡Genial!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" id="backToTop" class="btn btn-primary rounded-circle position-fixed" style="bottom:24px;right:24px;display:none;width:50px;height:50px;z-index:1030;" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    /* Render FAQ */
+    document.getElementById('faqAccordion').innerHTML = FAQ.map((f, i) => `
+      <div class="accordion-item rounded-3 mb-2 border">
+        <h2 class="accordion-header">
+          <button class="accordion-button ${i !== 0 ? 'collapsed' : ''} rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq${i}">
+            <i class="bi bi-question-circle-fill text-primary me-2"></i>${f.pregunta}
+          </button>
+        </h2>
+        <div id="faq${i}" class="accordion-collapse collapse ${i === 0 ? 'show' : ''}" data-bs-parent="#faqAccordion">
+          <div class="accordion-body text-muted">${f.respuesta}</div>
+        </div>
+      </div>
+    `).join('');
+
+    /* Set min date to today */
+    const fechaInput = document.getElementById('fecha');
+    if (fechaInput) {
+      const today = new Date().toISOString().split('T')[0];
+      fechaInput.min = today;
+    }
+
+    /* Reveal observer */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal:not(.visible)').forEach(el => io.observe(el));
+    }
+  </script>
+</body>
+</html>
