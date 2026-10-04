@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precios · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="prices" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Transparencia total</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Nuestros precios</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">Sin sorpresas. Todos los precios incluyen IVA y se confirman antes de cada procedimiento.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="pricingGrid"></div>
+
+    <section class="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl p-8 mb-12">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-white mb-2" style="font-family: 'Fredoka', sans-serif;">Paquetes combinados</h2>
+        <p class="text-gray-300">Ahorra más con nuestros paquetes integrales</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-background-dark/60 border border-gray-800 rounded-xl p-6">
+          <div class="text-primary font-bold text-sm uppercase tracking-wider mb-2">Cachorro</div>
+          <h3 class="text-white font-bold text-2xl mb-1" style="font-family: 'Fredoka', sans-serif;">Kit Inicial</h3>
+          <p class="text-gray-400 text-sm mb-4">Para mascotas menores de 1 año</p>
+          <p class="text-primary text-3xl font-bold mb-5" style="font-family: 'Fredoka', sans-serif;">S/ 180</p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>3 vacunas completas</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>2 desparasitaciones</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Consulta inicial gratis</li>
+          </ul>
+          <a href="booking.html?servicio=vet2" class="btn-primary text-sm justify-center">Contratar</a>
+        </div>
+        <div class="bg-primary/15 border-2 border-primary rounded-xl p-6 relative">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">Más popular</span>
+          <div class="text-primary font-bold text-sm uppercase tracking-wider mb-2">Adulto</div>
+          <h3 class="text-white font-bold text-2xl mb-1" style="font-family: 'Fredoka', sans-serif;">Plan Anual</h3>
+          <p class="text-gray-400 text-sm mb-4">Chequeo completo todo el año</p>
+          <p class="text-primary text-3xl font-bold mb-5" style="font-family: 'Fredoka', sans-serif;">S/ 360</p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>4 consultas anuales</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Vacunas anuales</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Análisis clínicos</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Limpieza dental</li>
+          </ul>
+          <a href="booking.html?servicio=vet1" class="btn-primary text-sm justify-center">Contratar</a>
+        </div>
+        <div class="bg-background-dark/60 border border-gray-800 rounded-xl p-6">
+          <div class="text-primary font-bold text-sm uppercase tracking-wider mb-2">Senior</div>
+          <h3 class="text-white font-bold text-2xl mb-1" style="font-family: 'Fredoka', sans-serif;">Plan Geriátrico</h3>
+          <p class="text-gray-400 text-sm mb-4">Para mascotas mayores de 7 años</p>
+          <p class="text-primary text-3xl font-bold mb-5" style="font-family: 'Fredoka', sans-serif;">S/ 480</p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>6 consultas anuales</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Perfil sanguíneo trimestral</li>
+            <li class="flex items-start gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Ecografía abdominal</li>
+          </ul>
+          <a href="booking.html?servicio=vet8" class="btn-primary text-sm justify-center">Contratar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center">
+      <div class="bg-background-card border border-gray-800 rounded-2xl p-8 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">¿Dudas sobre algún precio?</h2>
+        <p class="text-gray-300 mb-6">Nuestro equipo te orientará sin compromiso sobre el mejor plan para tu mascota.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="contact.html" class="btn-outline">Contactar</a>
+          <a href="booking.html" class="btn-primary">Reservar cita</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      const grid = document.getElementById('pricingGrid');
+      grid.innerHTML = SERVICIOS.map(s => `
+        <div class="card-hover bg-background-card border border-gray-800 rounded-xl p-6 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <span class="bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">${UI.categoriaLabel(s.categoria)}</span>
+            <p class="text-primary font-bold text-2xl whitespace-nowrap" style="font-family: 'Fredoka', sans-serif;">${UI.formatPrice(s.precio)}</p>
+          </div>
+          <h3 class="text-white font-semibold text-lg mb-2">${UI.escape(s.nombre)}</h3>
+          <p class="text-gray-400 text-sm mb-4 flex-1">${UI.escape(s.descripcion)}</p>
+          <div class="flex items-center gap-1 text-gray-500 text-xs mb-4">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            ${s.duracion} minutos
+          </div>
+          <a href="booking.html?servicio=${s.id}" class="btn-outline text-sm justify-center">Reservar</a>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

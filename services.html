@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios · Patitas Felices</title>
+  <meta name="description" content="Conoce todos nuestros servicios veterinarios: consulta, vacunación, cirugía, estética y emergencias." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="services" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Lo que ofrecemos</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Nuestros servicios</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">Atención integral para todas las etapas de vida de tu mascota, desde la primera vacuna hasta cuidados geriátricos.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-10" id="filterCategoria">
+      <button data-filter="todas" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-primary bg-primary text-white">Todos</button>
+      <button data-filter="consulta" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Medicina General</button>
+      <button data-filter="estetica" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Estética y Spa</button>
+      <button data-filter="cirugia" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Cirugía</button>
+      <button data-filter="analisis" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Diagnóstico</button>
+      <button data-filter="emergencia" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Emergencias</button>
+      <button data-filter="odontologia" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Odontología</button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="servicesGrid"></div>
+
+    <div class="mt-16 bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl p-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">¿No encuentras lo que buscas?</h2>
+      <p class="text-gray-300 mb-6 max-w-2xl mx-auto">Contáctanos y te ayudaremos con servicios personalizados para tu mascota.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="contact.html" class="btn-outline">Contactar</a>
+        <a href="booking.html" class="btn-primary">Reservar cita</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      const grid = document.getElementById('servicesGrid');
+      function render(filter) {
+        const list = filter === 'todas' ? SERVICIOS : SERVICIOS.filter(s => s.categoria === filter);
+        grid.innerHTML = list.map(s => `
+          <div class="card-hover bg-background-card border border-gray-800 rounded-xl overflow-hidden group flex flex-col">
+            <div class="aspect-[4/3] overflow-hidden relative">
+              <img src="${s.imagen}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="${UI.escape(s.nombre)}"/>
+              <span class="absolute top-3 left-3 bg-background-dark/80 backdrop-blur text-primary text-xs font-semibold px-3 py-1 rounded-full border border-primary/30">${UI.categoriaLabel(s.categoria)}</span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col">
+              <h3 class="text-white font-semibold mb-2 text-lg">${UI.escape(s.nombre)}</h3>
+              <p class="text-gray-400 text-sm mb-4 flex-1">${UI.escape(s.descripcion)}</p>
+              <div class="flex items-center justify-between pt-3 border-t border-gray-800">
+                <div class="flex items-center gap-1 text-gray-500 text-xs">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  ${s.duracion} min
+                </div>
+                <p class="text-primary font-bold text-xl">${UI.formatPrice(s.precio)}</p>
+              </div>
+              <a href="booking.html?servicio=${s.id}" class="btn-primary justify-center text-sm mt-4 w-full">Reservar</a>
+            </div>
+          </div>
+        `).join('');
+      }
+      render('todas');
+      document.querySelectorAll('#filterCategoria .filter-btn').forEach(b => {
+        b.addEventListener('click', () => {
+          document.querySelectorAll('#filterCategoria .filter-btn').forEach(x => {
+            x.classList.remove('bg-primary', 'text-white', 'border-primary');
+            x.classList.add('border-gray-700', 'text-gray-300');
+          });
+          b.classList.add('bg-primary', 'text-white', 'border-primary');
+          b.classList.remove('border-gray-700', 'text-gray-300');
+          render(b.dataset.filter);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

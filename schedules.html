@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horarios · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="schedules" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Estamos para ayudarte</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Horarios de atención</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">Atención regular con cita previa. Emergencias disponibles las 24 horas del día, los 7 días de la semana.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <div class="lg:col-span-2 bg-background-card border border-gray-800 rounded-2xl p-6 md:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-white" style="font-family: 'Fredoka', sans-serif;">Esta semana</h2>
+          <span id="semanaActual" class="text-sm text-gray-400"></span>
+        </div>
+        <div id="scheduleList" class="space-y-3"></div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-gradient-to-br from-primary/10 to-primary/5 border-2 border-primary rounded-2xl p-6">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="pulse-dot"></span>
+            <p class="text-primary uppercase tracking-[0.2em] text-xs font-bold">Urgencias 24/7</p>
+          </div>
+          <h3 class="text-white font-bold text-xl mb-2" style="font-family: 'Fredoka', sans-serif;">¿Emergencia?</h3>
+          <p class="text-gray-300 text-sm mb-4">Atención inmediata cualquier hora, día festivo o fin de semana. Línea directa con veterinario de guardia.</p>
+          <a href="tel:+51999555888" class="btn-primary text-sm justify-center">
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 1 011.21-.502l4.493 1.498a1 1 1 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            +51 999 555 888
+          </a>
+        </div>
+
+        <div class="bg-background-card border border-gray-800 rounded-2xl p-6">
+          <h3 class="text-white font-bold text-lg mb-3" style="font-family: 'Fredoka', sans-serif;">Información útil</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-2 text-gray-300">
+              <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              Llega 10 minutos antes de tu cita
+            </li>
+            <li class="flex items-start gap-2 text-gray-300">
+              <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.366-3.016z"></path></svg>
+              Trae el carnet de vacunación de tu mascota
+            </li>
+            <li class="flex items-start gap-2 text-gray-300">
+              <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.366-3.016z"></path></svg>
+              Anulación con al menos 24h de anticipación
+            </li>
+            <li class="flex items-start gap-2 text-gray-300">
+              <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.366-3.016z"></path></svg>
+              Estacionamiento gratuito para clientes
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <section class="bg-background-card border border-gray-800 rounded-2xl p-8 text-center">
+      <h2 class="text-3xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">¿Listo para reservar?</h2>
+      <p class="text-gray-300 mb-6 max-w-xl mx-auto">Agenda tu cita en línea y recibe confirmación inmediata.</p>
+      <a href="booking.html" class="btn-primary text-base">Reservar ahora</a>
+    </section>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      const hoy = new Date();
+      const inicioSemana = new Date(hoy);
+      inicioSemana.setDate(hoy.getDate() - hoy.getDay() + 1);
+      const finSemana = new Date(inicioSemana);
+      finSemana.setDate(inicioSemana.getDate() + 6);
+      const opts = { day: '2-digit', month: 'short' };
+      document.getElementById('semanaActual').textContent = `${inicioSemana.toLocaleDateString('es-ES', opts)} - ${finSemana.toLocaleDateString('es-ES', opts)}`;
+
+      const labels = { lunes: 'Lunes', martes: 'Martes', miercoles: 'Miércoles', jueves: 'Jueves', viernes: 'Viernes', sabado: 'Sábado', domingo: 'Domingo' };
+      const orden = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+      const hoyKey = orden[(hoy.getDay() + 6) % 7];
+
+      document.getElementById('scheduleList').innerHTML = orden.map(key => {
+        const h = HORARIOS[key];
+        const isToday = key === hoyKey;
+        const nota = h.nota ? `<span class="ml-2 text-xs text-primary">${h.nota}</span>` : '';
+        return `
+          <div class="flex items-center justify-between p-4 rounded-xl ${isToday ? 'bg-primary/10 border border-primary/30' : 'bg-background-dark border border-gray-800'}">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full ${isToday ? 'bg-primary text-white' : 'bg-background-card text-gray-400 border border-gray-700'} flex items-center justify-center font-bold text-sm" style="font-family: 'Fredoka', sans-serif;">
+                ${labels[key].charAt(0)}
+              </div>
+              <div>
+                <p class="text-white font-semibold">${labels[key]} ${isToday ? '<span class="ml-2 text-xs text-primary">(Hoy)</span>' : ''}</p>
+                <p class="text-gray-400 text-sm">${h.abierto ? `${h.desde} - ${h.hasta}` : 'Cerrado'}${nota}</p>
+              </div>
+            </div>
+            <span class="text-xs font-semibold px-3 py-1 rounded-full ${h.abierto ? 'bg-primary/20 text-primary border border-primary/30' : 'bg-red-500/20 text-red-300 border border-red-500/30'}">${h.abierto ? 'Abierto' : 'Cerrado'}</span>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>
