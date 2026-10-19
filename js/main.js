@@ -11,16 +11,16 @@ const STORAGE_KEYS = {
 };
 
 const SERVICIOS = [
-  { id: 'vet1', categoria: 'consulta', nombre: 'Consulta General Veterinaria', descripcion: 'Evaluación clínica completa de tu mascota con revisión integral, diagnóstico y recomendaciones personalizadas.', duracion: 45, precio: 80, imagen: 'assets/service-checkup.jpg' },
-  { id: 'vet2', categoria: 'consulta', nombre: 'Vacunación', descripcion: 'Aplicación de vacunas según el calendario de tu mascota: parvovirus, rabia, séxtuple, triple felina y más.', duracion: 30, precio: 60, imagen: 'assets/service-vaccine.jpg' },
-  { id: 'vet3', categoria: 'consulta', nombre: 'Desparasitación', descripcion: 'Tratamiento antiparasitario interno y externo para proteger a tu mascota de parásitos.', duracion: 20, precio: 40, imagen: 'assets/pet-dog.jpg' },
-  { id: 'vet4', categoria: 'estetica', nombre: 'Baño y Corte Completo', descripcion: 'Baño medicado, corte según raza, secado profesional y perfume hipoalergénico.', duracion: 90, precio: 70, imagen: 'assets/service-grooming.jpg' },
-  { id: 'vet5', categoria: 'estetica', nombre: 'Corte de Uñas y Limpieza', descripcion: 'Corte de uñas, limpieza de oídos y glándulas anales para el confort de tu mascota.', duracion: 30, precio: 25, imagen: 'assets/service-grooming.jpg' },
-  { id: 'vet6', categoria: 'cirugia', nombre: 'Cirugía Menor', descripcion: 'Procedimientos quirúrgicos ambulatorios con anestesia monitoreada y cuidados post-operatorios.', duracion: 120, precio: 280, imagen: 'assets/service-surgery.jpg' },
-  { id: 'vet7', categoria: 'cirugia', nombre: 'Esterilización', descripcion: 'Esterilización con láser de CO2, mínima invasión, pronta recuperación y control del dolor.', duracion: 90, precio: 220, imagen: 'assets/service-surgery.jpg' },
-  { id: 'vet8', categoria: 'analisis', nombre: 'Análisis Clínicos', descripcion: 'Hemograma, química sanguínea, perfil renal, tiroideo y otros exámenes de laboratorio.', duracion: 30, precio: 90, imagen: 'assets/service-lab.jpg' },
-  { id: 'vet9', categoria: 'emergencia', nombre: 'Atención de Emergencia', descripcion: 'Servicio 24/7 para urgencias veterinarias. Atención inmediata con equipo de cuidados intensivos.', duracion: 60, precio: 150, imagen: 'assets/service-emergency.jpg' },
-  { id: 'vet10', categoria: 'odontologia', nombre: 'Limpieza Dental', descripcion: 'Profilaxis dental con ultrasonido, eliminación de sarro y pulido dental para una boca saludable.', duracion: 60, precio: 180, imagen: 'assets/service-checkup.jpg' }
+  { id: 'vet1', categoria: 'consulta', nombre: 'Consulta General Veterinaria', descripcion: 'Evaluación clínica completa de tu mascota con revisión integral, diagnóstico y recomendaciones personalizadas.', duracion: 45, precio: 25000, imagen: 'assets/service-checkup.jpg' },
+  { id: 'vet2', categoria: 'consulta', nombre: 'Vacunación', descripcion: 'Aplicación de vacunas según el calendario de tu mascota: parvovirus, rabia, séxtuple, triple felina y más.', duracion: 30, precio: 15000, imagen: 'assets/service-vaccine.jpg' },
+  { id: 'vet3', categoria: 'consulta', nombre: 'Desparasitación', descripcion: 'Tratamiento antiparasitario interno y externo para proteger a tu mascota de parásitos.', duracion: 20, precio: 12000, imagen: 'assets/pet-dog.jpg' },
+  { id: 'vet4', categoria: 'estetica', nombre: 'Baño y Corte Completo', descripcion: 'Baño medicado, corte según raza, secado profesional y perfume hipoalergénico.', duracion: 90, precio: 28000, imagen: 'assets/service-grooming.jpg' },
+  { id: 'vet5', categoria: 'estetica', nombre: 'Corte de Uñas y Limpieza', descripcion: 'Corte de uñas, limpieza de oídos y glándulas anales para el confort de tu mascota.', duracion: 30, precio: 8000, imagen: 'assets/service-grooming.jpg' },
+  { id: 'vet6', categoria: 'cirugia', nombre: 'Cirugía Menor', descripcion: 'Procedimientos quirúrgicos ambulatorios con anestesia monitoreada y cuidados post-operatorios.', duracion: 120, precio: 90000, imagen: 'assets/service-surgery.jpg' },
+  { id: 'vet7', categoria: 'cirugia', nombre: 'Esterilización', descripcion: 'Esterilización con láser de CO2, mínima invasión, pronta recuperación y control del dolor.', duracion: 90, precio: 140000, imagen: 'assets/service-surgery.jpg' },
+  { id: 'vet8', categoria: 'analisis', nombre: 'Análisis Clínicos', descripcion: 'Hemograma, química sanguínea, perfil renal, tiroideo y otros exámenes de laboratorio.', duracion: 30, precio: 30000, imagen: 'assets/service-lab.jpg' },
+  { id: 'vet9', categoria: 'emergencia', nombre: 'Atención de Emergencia', descripcion: 'Servicio 24/7 para urgencias veterinarias. Atención inmediata con equipo de cuidados intensivos.', duracion: 60, precio: 45000, imagen: 'assets/service-emergency.jpg' },
+  { id: 'vet10', categoria: 'odontologia', nombre: 'Limpieza Dental', descripcion: 'Profilaxis dental con ultrasonido, eliminación de sarro y pulido dental para una boca saludable.', duracion: 60, precio: 60000, imagen: 'assets/service-checkup.jpg' }
 ];
 
 const VETERINARIOS = [
@@ -67,8 +67,8 @@ const Auth = {
     const users = Storage.get(STORAGE_KEYS.USERS, []);
     if (users.length === 0) {
       Storage.set(STORAGE_KEYS.USERS, [
-        { id: 'u1', nombre: 'Juan Pérez', email: 'juan@test.com', telefono: '+51 999 111 222', dni: '45678901', password: '123456', foto: 'assets/avatar-man.jpg', creado: Date.now() - 86400000 * 60 },
-        { id: 'u2', nombre: 'María López', email: 'maria@test.com', telefono: '+51 999 333 444', dni: '47890123', password: '123456', foto: 'assets/avatar-woman.jpg', creado: Date.now() - 86400000 * 30 }
+        { id: 'u1', nombre: 'Juan Pérez', email: 'juan@test.com', telefono: '+56 9 9111 1222', dni: '45678901', password: '123456', foto: 'assets/avatar-man.jpg', creado: Date.now() - 86400000 * 60 },
+        { id: 'u2', nombre: 'María López', email: 'maria@test.com', telefono: '+56 9 9333 3444', dni: '47890123', password: '123456', foto: 'assets/avatar-woman.jpg', creado: Date.now() - 86400000 * 30 }
       ]);
     } else {
       const migrated = users.map(user => {
@@ -157,10 +157,10 @@ const Reservas = {
     const list = Storage.get(STORAGE_KEYS.RESERVAS, null);
     if (list === null) {
       const samples = [
-        { id: 'r1', userId: 'u1', servicioId: 'vet1', profesionalId: 'vv1', fecha: this._futureDate(3), hora: '10:00', mascota: { nombre: 'Max', especie: 'perro', raza: 'Golden Retriever', edad: '4 años' }, estado: 'confirmada', pago: 'pagado', metodoPago: 'tarjeta', precio: 80, notas: '', createdAt: Date.now() - 86400000 * 2 },
-        { id: 'r2', userId: 'u1', servicioId: 'vet4', profesionalId: 'vv3', fecha: this._futureDate(7), hora: '15:00', mascota: { nombre: 'Luna', especie: 'gato', raza: 'Siamés', edad: '3 años' }, estado: 'pendiente', pago: 'pendiente', metodoPago: null, precio: 70, notas: 'Corte completo y baño medicado', createdAt: Date.now() - 86400000 },
-        { id: 'r3', userId: 'u1', servicioId: 'vet2', profesionalId: 'vv1', fecha: this._futureDate(-15), hora: '11:00', mascota: { nombre: 'Max', especie: 'perro', raza: 'Golden Retriever', edad: '4 años' }, estado: 'completada', pago: 'pagado', metodoPago: 'yape', precio: 60, notas: 'Vacuna antirrábica', createdAt: Date.now() - 86400000 * 20 },
-        { id: 'r4', userId: 'u1', servicioId: 'vet3', profesionalId: 'vv1', fecha: this._futureDate(-30), hora: '16:00', mascota: { nombre: 'Rocky', especie: 'perro', raza: 'Bulldog Francés', edad: '5 años' }, estado: 'completada', pago: 'pagado', metodoPago: 'efectivo', precio: 40, notas: '', createdAt: Date.now() - 86400000 * 35 }
+        { id: 'r1', userId: 'u1', servicioId: 'vet1', profesionalId: 'vv1', fecha: this._futureDate(3), hora: '10:00', mascota: { nombre: 'Max', especie: 'perro', raza: 'Golden Retriever', edad: '4 años' }, estado: 'confirmada', pago: 'pagado', metodoPago: 'tarjeta', precio: 25000, notas: '', createdAt: Date.now() - 86400000 * 2 },
+        { id: 'r2', userId: 'u1', servicioId: 'vet4', profesionalId: 'vv3', fecha: this._futureDate(7), hora: '15:00', mascota: { nombre: 'Luna', especie: 'gato', raza: 'Siamés', edad: '3 años' }, estado: 'pendiente', pago: 'pendiente', metodoPago: null, precio: 28000, notas: 'Corte completo y baño medicado', createdAt: Date.now() - 86400000 },
+        { id: 'r3', userId: 'u1', servicioId: 'vet2', profesionalId: 'vv1', fecha: this._futureDate(-15), hora: '11:00', mascota: { nombre: 'Max', especie: 'perro', raza: 'Golden Retriever', edad: '4 años' }, estado: 'completada', pago: 'pagado', metodoPago: 'transferencia', precio: 15000, notas: 'Vacuna antirrábica', createdAt: Date.now() - 86400000 * 20 },
+        { id: 'r4', userId: 'u1', servicioId: 'vet3', profesionalId: 'vv1', fecha: this._futureDate(-30), hora: '16:00', mascota: { nombre: 'Rocky', especie: 'perro', raza: 'Bulldog Francés', edad: '5 años' }, estado: 'completada', pago: 'pagado', metodoPago: 'efectivo', precio: 12000, notas: '', createdAt: Date.now() - 86400000 * 35 }
       ];
       Storage.set(STORAGE_KEYS.RESERVAS, samples);
     }
@@ -258,7 +258,7 @@ const UI = {
     const d = new Date(iso + 'T00:00:00');
     return d.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
   },
-  formatPrice(n) { return 'S/ ' + Number(n).toFixed(2); },
+  formatPrice(n) { return '$' + Number(n).toLocaleString('es-CL', { maximumFractionDigits: 0 }) + ' CLP'; },
   reservaPrecio(r) {
     if (r && typeof r.precio === 'number') return r.precio;
     const s = r ? SERVICIOS.find(x => x.id === r.servicioId) : null;
@@ -449,15 +449,15 @@ function buildFooter() {
           <ul class="space-y-3 text-sm text-gray-400">
             <li class="flex items-start gap-2">
               <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              Av. Pardo y Aliaga 480, San Isidro
+              Av. Providencia 1234, Providencia
             </li>
             <li class="flex items-start gap-2">
               <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-              +51 999 555 888
+              +56 9 8765 4321
             </li>
             <li class="flex items-start gap-2">
               <svg class="h-4 w-4 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              hola@patitasfelices.pe
+              hola@patitasfelices.cl
             </li>
           </ul>
           <div class="flex gap-3 mt-5">
@@ -475,7 +475,7 @@ function buildFooter() {
       </div>
       <div class="border-t border-primary/20 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="text-sm text-gray-500">© 2024 Patitas Felices. Todos los derechos reservados.</p>
-        <p class="text-xs text-gray-600">San Isidro, Lima · Hecho con amor por las mascotas</p>
+        <p class="text-xs text-gray-600">Providencia, Santiago, Chile · Hecho con amor por las mascotas</p>
       </div>
     </div>
   </footer>`;

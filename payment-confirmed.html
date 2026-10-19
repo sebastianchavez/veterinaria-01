@@ -78,7 +78,7 @@
       const numOp = 'OP-' + Date.now().toString().slice(-10);
 
       const metodoLabel = reserva.metodoPago === 'tarjeta' ? 'Tarjeta de crédito/débito'
-        : reserva.metodoPago === 'yape' ? 'Yape / Plin'
+        : reserva.metodoPago === 'transferencia' ? 'Transferencia bancaria'
         : reserva.metodoPago === 'efectivo' ? 'Efectivo en clínica'
         : '—';
 
@@ -123,7 +123,7 @@
           <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span class="text-white">${UI.formatPrice(reserva.precio || servicio.precio)}</span></div>
           <div class="flex justify-between"><span class="text-gray-400">Método de pago:</span><span class="text-white">${metodoLabel}</span></div>
           ${reserva.metodoPago === 'tarjeta' ? `<div class="flex justify-between"><span class="text-gray-400">Tarjeta:</span><span class="text-white">**** **** ****4241</span></div>` : ''}
-          ${reserva.metodoPago === 'yape' ? `<div class="flex justify-between"><span class="text-gray-400">N° operación:</span><span class="text-white">${pagoDraft.metodo === 'yape' ? 'Aprobada' : '—'}</span></div>` : ''}
+          ${reserva.metodoPago === 'transferencia' ? `<div class="flex justify-between"><span class="text-gray-400">N° operación:</span><span class="text-white">${pagoDraft.metodo === 'transferencia' ? 'Aprobada' : '—'}</span></div>` : ''}
           <div class="border-t border-gray-800 pt-3 mt-3 flex justify-between items-center">
             <span class="text-white font-semibold text-base">Total pagado:</span>
             <span class="text-primary text-3xl font-bold" style="font-family: 'Fredoka', sans-serif;">${UI.formatPrice(reserva.precio || servicio.precio)}</span>

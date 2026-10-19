@@ -83,7 +83,7 @@
             </div>
             <div class="border-t border-gray-800 pt-4 space-y-2 text-sm">
               <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span class="text-white">${UI.formatPrice(precio)}</span></div>
-              <div class="flex justify-between"><span class="text-gray-400">IGV (incluido):</span><span class="text-white">${UI.formatPrice(precio * 0.18 / 1.18)}</span></div>
+              <div class="flex justify-between"><span class="text-gray-400">IVA (incluido):</span><span class="text-white">${UI.formatPrice(precio * 0.19 / 1.19)}</span></div>
               <div class="flex justify-between items-center pt-2 border-t border-gray-800 mt-2">
                 <span class="text-white font-semibold text-base">Total:</span>
                 <span class="text-primary text-2xl font-bold" style="font-family: 'Fredoka', sans-serif;">${UI.formatPrice(precio)}</span>
@@ -98,14 +98,14 @@
             <p class="text-gray-400 text-sm mb-6">Selecciona cómo prefieres pagar</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6" id="methodsGrid">
-              <button type="button" data-metodo="yape" class="method-card text-left bg-background-dark border-2 border-primary rounded-xl p-4 transition-all">
+              <button type="button" data-metodo="transferencia" class="method-card text-left bg-background-dark border-2 border-primary rounded-xl p-4 transition-all">
                 <div class="flex items-center justify-between mb-2">
                   <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                    <span class="text-purple-400 font-bold text-sm">Y</span>
+                    <span class="text-purple-400 font-bold text-sm">T</span>
                   </div>
                   <svg class="h-5 w-5 text-primary hidden check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <p class="text-white font-semibold">Yape / Plin</p>
+                <p class="text-white font-semibold">Transferencia bancaria</p>
                 <p class="text-gray-400 text-xs mt-1">Transferencia móvil</p>
               </button>
               <button type="button" data-metodo="tarjeta" class="method-card text-left bg-background-dark border-2 border-gray-800 rounded-xl p-4 hover:border-primary transition-all">
@@ -145,7 +145,7 @@
         </section>
       `;
 
-      let selectedMethod = 'yape';
+      let selectedMethod = 'transferencia';
 
       function renderMethod() {
         document.querySelectorAll('.method-card').forEach(c => {
@@ -159,26 +159,20 @@
         active.querySelector('.check-icon').classList.remove('hidden');
 
         const body = document.getElementById('methodBody');
-        if (selectedMethod === 'yape') {
+        if (selectedMethod === 'transferencia') {
           body.innerHTML = `
-            <h4 class="text-white font-semibold mb-4">Paga con Yape o Plin</h4>
+            <h4 class="text-white font-semibold mb-4">Paga por transferencia bancaria</h4>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="bg-white p-6 rounded-2xl flex flex-col items-center">
-                <div class="grid grid-cols-13 gap-1 mb-3" style="grid-template-columns: repeat(13, 1fr);">
-                  ${Array.from({length: 169}).map((_, i) => {
-                    const seed = (i * 7 + 3) % 11;
-                    return `<div class="aspect-square ${[1,3,4,6,7,9,11].includes(seed) ? 'bg-black' : 'bg-white'}"></div>`;
-                  }).join('')}
-                </div>
-                <p class="text-gray-800 font-bold">PFA-9210-3784</p>
-                <p class="text-gray-600 text-xs">Escanea o envía al número</p>
+                <p class="text-gray-800 font-bold">Transferencia bancaria</p>
+                <p class="text-gray-600 text-xs text-center">Datos de cuenta de ejemplo: solicita los datos de la clínica antes de transferir.</p>
               </div>
               <div>
                 <p class="text-sm text-gray-300 mb-4">Una vez realizada la transferencia, confirma el pago ingresando el número de operación.</p>
                 <label class="block text-sm font-medium text-gray-300 mb-2">Número de operación *</label>
-                <input type="text" id="yapeOp" maxlength="20" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: 123456789"/>
-                <label class="block text-sm font-medium text-gray-300 mb-2 mt-3">Tu número Yape/Plin</label>
-                <input type="tel" id="yapeTel" value="${UI.escape(user.telefono)}" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="+51 999 999 999"/>
+                <input type="text" id="transferenciaOp" maxlength="20" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: 123456789"/>
+                <label class="block text-sm font-medium text-gray-300 mb-2 mt-3">Tu teléfono de contacto</label>
+                <input type="tel" id="transferenciaTel" value="${UI.escape(user.telefono)}" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="+56 9 1234 5678"/>
               </div>
             </div>
           `;
@@ -220,7 +214,7 @@
               <span class="text-2xl">💵</span>
               <div>
                 <p class="text-white font-medium mb-1">Pagarás al llegar a la clínica</p>
-                <p class="text-gray-400 text-sm">Aceptamos billetes y monedas en soles peruanos. Puedes acercarte a cancelar el monto total el día de tu cita.</p>
+                <p class="text-gray-400 text-sm">Aceptamos billetes y monedas en pesos chilenos (CLP). Puedes acercarte a cancelar el monto total el día de tu cita.</p>
               </div>
             </div>
             <div class="mt-4 p-4 bg-background-dark border border-gray-800 rounded-xl">
@@ -245,8 +239,8 @@
       renderMethod();
 
       document.getElementById('btnPagar').addEventListener('click', () => {
-        if (selectedMethod === 'yape') {
-          const op = document.getElementById('yapeOp').value.trim();
+        if (selectedMethod === 'transferencia') {
+          const op = document.getElementById('transferenciaOp').value.trim();
           if (!op) { UI.toast('Ingresa el número de operación', 'error'); return; }
           if (op.length < 6) { UI.toast('Número de operación inválido', 'error'); return; }
         } else if (selectedMethod === 'tarjeta') {
