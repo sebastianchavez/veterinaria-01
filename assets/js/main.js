@@ -79,9 +79,9 @@
         const step = (now) => {
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.floor(eased * target).toLocaleString('es-MX');
+          el.textContent = Math.floor(eased * target).toLocaleString('es-CL');
           if (progress < 1) requestAnimationFrame(step);
-          else el.textContent = target.toLocaleString('es-MX');
+          else el.textContent = target.toLocaleString('es-CL');
         };
         requestAnimationFrame(step);
         counterIO.unobserve(el);
@@ -154,7 +154,7 @@
 
       const priceEl = serviceModal.querySelector('.modal-price');
       if (svc.precioDesde > 0) {
-        priceEl.innerHTML = '<small>Desde</small> $' + svc.precioDesde.toLocaleString('es-MX') + ' <small>MXN</small>';
+        priceEl.innerHTML = '<small>Desde</small> $' + svc.precioDesde.toLocaleString('es-CL') + ' <small>CLP</small>';
         priceEl.style.display = 'block';
       } else {
         priceEl.innerHTML = '<small>Precio variable según producto</small>';

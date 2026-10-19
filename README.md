@@ -1,6 +1,6 @@
 # 🐾 Patitas Felices — Landing Page Template
 
-Template HTML/Bootstrap listo para personalizar para clínicas veterinarias.
+Template HTML/Bootstrap listo para personalizar para clínicas veterinarias. Precios referenciales en pesos chilenos (CLP), teléfonos +56 y dirección de ejemplo en Providencia, Santiago. Reemplaza los contactos de muestra por los datos reales de la clínica.
 
 ![Bootstrap 5.3](https://img.shields.io/badge/Bootstrap-5.3.3-7952B3?logo=bootstrap)
 ![HTML5](https://img.shields.io/badge/HTML5-semantic-E34F26?logo=html5)
@@ -214,7 +214,7 @@ Total sin dependencias: ~138 KB
 ```js
 // data.js — Cambiar info básica
 VET_INFO.nombre = 'Mi Veterinaria';
-VET_INFO.telefono = '+52 55 0000 0000';
+VET_INFO.telefono = '+56 2 2000 0000';
 VET_INFO.direccion = 'Mi dirección...';
 VET_INFO.horarios = [...];
 
@@ -226,7 +226,7 @@ SERVICIOS.push({
   descripcionCorta: 'Descripción corta...',
   icono: 'bi-star-fill',
   imagen: 'https://images.unsplash.com/...',
-  precioDesde: 500
+  precioDesde: 25000
 });
 
 // Agregar un miembro del equipo

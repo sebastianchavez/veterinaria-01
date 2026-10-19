@@ -1,14 +1,15 @@
 /* ============================================================
    Mock data — Veterinaria Patitas Felices
+   Chile: precios referenciales en CLP y contactos de ejemplo.
    ============================================================ */
 
 const VET_INFO = {
   nombre: 'Patitas Felices',
   eslogan: 'Cuidamos a quienes más amas',
-  telefono: '+52 55 1234 5678',
-  whatsapp: '+52 55 8765 4321',
-  email: 'contacto@patitasfelices.mx',
-  direccion: 'Av. Insurgentes Sur 1234, Col. Del Valle, CDMX, CP 03100',
+  telefono: '+56 2 2345 6789',
+  whatsapp: '+56 9 8765 4321',
+  email: 'contacto@patitasfelices.cl',
+  direccion: 'Av. Providencia 1234, Providencia, Santiago, Chile',
   horarios: [
     { dias: 'Lunes a Viernes', horas: '09:00 — 20:00' },
     { dias: 'Sábados', horas: '09:00 — 14:00' },
@@ -19,7 +20,7 @@ const VET_INFO = {
     instagram: 'https://instagram.com/patitasfelices',
     tiktok: 'https://tiktok.com/@patitasfelices'
   },
-  mapaEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-99.16!3d19.39!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f15!3m3!1m2!1s0x0%3A0x0!2zMTnCsDIzJzI0LjAiTiA5OcKwMDknMzYuMCJX!5e0!3m2!1ses-419!2smx!4v1700000000000'
+  mapaEmbed: 'https://www.google.com/maps?q=Av.+Providencia+1234,+Providencia,+Santiago,+Chile&output=embed'
 };
 
 /* ---------- Servicios ---------- */
@@ -31,7 +32,7 @@ const SERVICIOS = [
     descripcionCorta: 'Revisión integral de tu mascota.',
     icono: 'bi-clipboard2-pulse',
     imagen: 'https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?w=800&q=80',
-    precioDesde: 450,
+    precioDesde: 25000,
     destacado: true
   },
   {
@@ -41,7 +42,7 @@ const SERVICIOS = [
     descripcionCorta: 'Esquemas completos de vacunación.',
     icono: 'bi-eyedropper',
     imagen: 'https://images.pexels.com/photos/6234624/pexels-photo-6234624.jpeg?auto=compress&cs=tinysrgb&w=800',
-    precioDesde: 280
+    precioDesde: 15000
   },
   {
     id: 'desparasitacion',
@@ -50,7 +51,7 @@ const SERVICIOS = [
     descripcionCorta: 'Control interno y externo de parásitos.',
     icono: 'bi-bug',
     imagen: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=800&q=80',
-    precioDesde: 220
+    precioDesde: 12000
   },
   {
     id: 'cirugia',
@@ -59,7 +60,7 @@ const SERVICIOS = [
     descripcionCorta: 'Quirófano equipado y monitoreo.',
     icono: 'bi-bandaid',
     imagen: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=800&q=80',
-    precioDesde: 1800,
+    precioDesde: 90000,
     destacado: true
   },
   {
@@ -69,7 +70,7 @@ const SERVICIOS = [
     descripcionCorta: 'Urgencias 24/7 los 365 días.',
     icono: 'bi-heart-pulse',
     imagen: 'https://images.pexels.com/photos/6235240/pexels-photo-6235240.jpeg?auto=compress&cs=tinysrgb&w=800',
-    precioDesde: 950
+    precioDesde: 45000
   },
   {
     id: 'estetica',
@@ -78,7 +79,7 @@ const SERVICIOS = [
     descripcionCorta: 'Baño, corte y limpieza dental.',
     icono: 'bi-droplet-half',
     imagen: 'https://images.pexels.com/photos/19145888/pexels-photo-19145888.jpeg?auto=compress&cs=tinysrgb&w=800',
-    precioDesde: 350
+    precioDesde: 18000
   },
   {
     id: 'peluqueria',
@@ -87,7 +88,7 @@ const SERVICIOS = [
     descripcionCorta: 'Cortes de raza y estilismo.',
     icono: 'bi-scissors',
     imagen: 'https://images.pexels.com/photos/19145895/pexels-photo-19145895.jpeg?auto=compress&cs=tinysrgb&w=800',
-    precioDesde: 480
+    precioDesde: 25000
   },
   {
     id: 'tienda',
@@ -161,7 +162,7 @@ const TESTIMONIOS = [
 const PLANES = [
   {
     nombre: 'Plan Básico',
-    precio: 299,
+    precio: 19990,
     periodo: 'mes',
     color: 'outline',
     incluye: [
@@ -173,7 +174,7 @@ const PLANES = [
   },
   {
     nombre: 'Plan Premium',
-    precio: 599,
+    precio: 39990,
     periodo: 'mes',
     color: 'primary',
     destacado: true,
@@ -187,7 +188,7 @@ const PLANES = [
   },
   {
     nombre: 'Plan Familiar',
-    precio: 999,
+    precio: 69990,
     periodo: 'mes',
     color: 'outline',
     incluye: [
@@ -205,37 +206,37 @@ const PRECIOS_TABLA = [
   {
     categoria: 'Consultas',
     items: [
-      { nombre: 'Consulta general', precio: '$450 MXN' },
-      { nombre: 'Consulta especializada', precio: '$720 MXN' },
-      { nombre: 'Consulta a domicilio', precio: '$850 MXN' },
-      { nombre: 'Segunda opinión', precio: '$600 MXN' }
+      { nombre: 'Consulta general', precio: '$25.000 CLP' },
+      { nombre: 'Consulta especializada', precio: '$40.000 CLP' },
+      { nombre: 'Consulta a domicilio', precio: '$45.000 CLP' },
+      { nombre: 'Segunda opinión', precio: '$30.000 CLP' }
     ]
   },
   {
     categoria: 'Vacunación',
     items: [
-      { nombre: 'Parvovirus canino', precio: '$280 MXN' },
-      { nombre: 'Quíntuple canina', precio: '$420 MXN' },
-      { nombre: 'Triple felina (FVRCP)', precio: '$380 MXN' },
-      { nombre: 'Antirrábica', precio: '$220 MXN' }
+      { nombre: 'Parvovirus canino', precio: '$15.000 CLP' },
+      { nombre: 'Quíntuple canina', precio: '$22.000 CLP' },
+      { nombre: 'Triple felina (FVRCP)', precio: '$20.000 CLP' },
+      { nombre: 'Antirrábica', precio: '$12.000 CLP' }
     ]
   },
   {
     categoria: 'Procedimientos',
     items: [
-      { nombre: 'Esterilización (hembra)', precio: 'Desde $2,800 MXN' },
-      { nombre: 'Castración (macho)', precio: 'Desde $1,800 MXN' },
-      { nombre: 'Extracción dental', precio: 'Desde $650 MXN' },
-      { nombre: 'Cirugía menor ambulatoria', precio: 'Desde $1,200 MXN' }
+      { nombre: 'Esterilización (hembra)', precio: 'Desde $140.000 CLP' },
+      { nombre: 'Castración (macho)', precio: 'Desde $90.000 CLP' },
+      { nombre: 'Extracción dental', precio: 'Desde $35.000 CLP' },
+      { nombre: 'Cirugía menor ambulatoria', precio: 'Desde $90.000 CLP' }
     ]
   },
   {
     categoria: 'Estética',
     items: [
-      { nombre: 'Baño estándar', precio: 'Desde $350 MXN' },
-      { nombre: 'Baño medicado', precio: 'Desde $480 MXN' },
-      { nombre: 'Corte de raza', precio: 'Desde $520 MXN' },
-      { nombre: 'Limpieza dental ultrasónica', precio: 'Desde $890 MXN' }
+      { nombre: 'Baño estándar', precio: 'Desde $18.000 CLP' },
+      { nombre: 'Baño medicado', precio: 'Desde $25.000 CLP' },
+      { nombre: 'Corte de raza', precio: 'Desde $28.000 CLP' },
+      { nombre: 'Limpieza dental ultrasónica', precio: 'Desde $60.000 CLP' }
     ]
   }
 ];
@@ -244,7 +245,7 @@ const PRECIOS_TABLA = [
 const FAQ = [
   {
     pregunta: '¿Atienden emergencias fuera de horario?',
-    respuesta: 'Sí, contamos con servicio de emergencia 24 horas los 365 días del año. Puedes marcar a nuestra línea directa +52 55 8765 4321 en cualquier momento.'
+    respuesta: 'Sí, contamos con servicio de emergencia 24 horas los 365 días del año. Puedes marcar a nuestra línea directa +56 9 8765 4321 en cualquier momento.'
   },
   {
     pregunta: '¿Necesito cita previa o puedo llegar directo?',
@@ -252,7 +253,7 @@ const FAQ = [
   },
   {
     pregunta: '¿Qué métodos de pago aceptan?',
-    respuesta: 'Efectivo, transferencia bancaria, tarjetas de crédito/débito (Visa, MasterCard, Amex) y pagos a meses sin intereses con bancos participantes.'
+    respuesta: 'Efectivo, transferencia bancaria, tarjetas de crédito/débito (Visa, MasterCard, Amex) y pago en cuotas sujeto a las condiciones del banco emisor.'
   },
   {
     pregunta: '¿Ofrecen servicio a domicilio?',
