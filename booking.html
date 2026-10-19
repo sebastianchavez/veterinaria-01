@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservar Cita · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Agenda una cita para tu mascota</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Reservar cita</h1>
+      <p class="text-gray-400">Sigue los pasos para completar tu reserva</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto mb-10 overflow-x-auto">
+      <div class="flex items-center justify-between min-w-[500px]">
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div id="dot1" class="step-dot w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-primary text-white border-2 border-primary">1</div>
+          <span class="text-xs text-gray-400">Servicio</span>
+        </div>
+        <div id="line1" class="step-line flex-1 mx-2"></div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div id="dot2" class="step-dot w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-gray-800 text-gray-500 border-2 border-gray-700">2</div>
+          <span class="text-xs text-gray-500">Profesional</span>
+        </div>
+        <div id="line2" class="step-line flex-1 mx-2"></div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div id="dot3" class="step-dot w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-gray-800 text-gray-500 border-2 border-gray-700">3</div>
+          <span class="text-xs text-gray-500">Mascota</span>
+        </div>
+        <div id="line3" class="step-line flex-1 mx-2"></div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div id="dot4" class="step-dot w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-gray-800 text-gray-500 border-2 border-gray-700">4</div>
+          <span class="text-xs text-gray-500">Fecha y hora</span>
+        </div>
+        <div id="line4" class="step-line flex-1 mx-2"></div>
+        <div class="flex flex-col items-center gap-1 flex-1">
+          <div id="dot5" class="step-dot w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold bg-gray-800 text-gray-500 border-2 border-gray-700">5</div>
+          <span class="text-xs text-gray-500">Confirmar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <div id="stepPanel" class="bg-background-card border border-gray-800 rounded-2xl p-6 md:p-8"></div>
+      </div>
+      <aside class="lg:col-span-1">
+        <div class="bg-background-card border border-primary/20 rounded-2xl p-6 lg:sticky lg:top-28">
+          <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2" style="font-family: 'Fredoka', sans-serif;">
+            <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+            Resumen
+          </h3>
+          <div class="space-y-3 text-sm" id="resumenBox">
+            <div class="flex justify-between gap-2"><span class="text-gray-400 flex-shrink-0">Servicio:</span><span id="r-servicio" class="text-white font-medium text-right">—</span></div>
+            <div class="flex justify-between gap-2"><span class="text-gray-400 flex-shrink-0">Profesional:</span><span id="r-prof" class="text-white font-medium text-right">—</span></div>
+            <div class="flex justify-between gap-2"><span class="text-gray-400 flex-shrink-0">Mascota:</span><span id="r-mascota" class="text-white font-medium text-right">—</span></div>
+            <div class="flex justify-between gap-2"><span class="text-gray-400 flex-shrink-0">Fecha:</span><span id="r-fecha" class="text-white font-medium text-right">—</span></div>
+            <div class="flex justify-between gap-2"><span class="text-gray-400 flex-shrink-0">Hora:</span><span id="r-hora" class="text-white font-medium text-right">—</span></div>
+            <div class="border-t border-gray-800 pt-3 mt-3 flex justify-between text-base items-center">
+              <span class="text-white font-semibold">Total:</span>
+              <span id="r-precio" class="text-primary text-xl font-bold" style="font-family: 'Fredoka', sans-serif;">S/ 0.00</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-5 border-t border-gray-800 text-xs text-gray-400 flex items-center gap-2">
+            <svg class="h-4 w-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Confirmación inmediata por email
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      if (!UI.requireAuth('booking.html')) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const draft = Reservas.getDraft() || {};
+      const user = Auth.current();
+      const mascotasUsuario = Mascotas.listByUser(user.id);
+
+      const state = {
+        step: 1,
+        servicioId: draft.servicioId || params.get('servicio') || null,
+        profesionalId: draft.profesionalId || null,
+        mascotaId: draft.mascotaId || null,
+        mascotaTemp: draft.mascotaTemp || null,
+        fecha: draft.fecha || null,
+        hora: draft.hora || null,
+        notas: draft.notas || ''
+      };
+
+      function save() { Reservas.setDraft(state); }
+
+      function updateResumen() {
+        document.getElementById('r-servicio').textContent = state.servicioId ? UI.servicioById(state.servicioId).nombre : '—';
+        document.getElementById('r-prof').textContent = state.profesionalId ? UI.veterinarioById(state.profesionalId).nombre : '—';
+
+        let mascotaLabel = '—';
+        if (state.mascotaId) {
+          const m = Mascotas.get(state.mascotaId);
+          if (m) mascotaLabel = m.nombre + ' (' + UI.especieById(m.especie).label + ')';
+        } else if (state.mascotaTemp && state.mascotaTemp.nombre) {
+          mascotaLabel = state.mascotaTemp.nombre + ' (' + UI.especieById(state.mascotaTemp.especie).label + ')';
+        }
+        document.getElementById('r-mascota').textContent = mascotaLabel;
+
+        document.getElementById('r-fecha').textContent = state.fecha ? UI.formatDate(state.fecha) : '—';
+        document.getElementById('r-hora').textContent = state.hora || '—';
+        const precio = state.servicioId ? UI.servicioById(state.servicioId).precio : 0;
+        document.getElementById('r-precio').textContent = UI.formatPrice(precio);
+      }
+
+      function updateDots() {
+        [1,2,3,4,5].forEach(i => {
+          const dot = document.getElementById('dot'+i);
+          dot.classList.remove('active', 'completed');
+          if (i < state.step) dot.classList.add('completed');
+          else if (i === state.step) dot.classList.add('active');
+        });
+        ['line1','line2','line3','line4'].forEach((id, idx) => {
+          const line = document.getElementById(id);
+          line.classList.toggle('active', idx + 1 < state.step);
+        });
+      }
+
+      function goToStep(n) {
+        if (n > 1 && !state.servicioId) { UI.toast('Selecciona un servicio primero', 'error'); return; }
+        if (n > 2 && !state.profesionalId) { UI.toast('Selecciona un profesional', 'error'); return; }
+        if (n > 3 && (!state.mascotaId && !state.mascotaTemp?.nombre)) { UI.toast('Indica los datos de tu mascota', 'error'); return; }
+        if (n > 4 && (!state.fecha || !state.hora)) { UI.toast('Selecciona fecha y hora', 'error'); return; }
+        state.step = n;
+        save();
+        updateDots();
+        renderStep();
+      }
+
+      function renderStep() {
+        const panel = document.getElementById('stepPanel');
+
+        if (state.step === 1) {
+          panel.innerHTML = `
+            <h2 class="text-2xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Selecciona el servicio</h2>
+            <p class="text-gray-400 text-sm mb-6">Elige el servicio que necesita tu mascota</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${SERVICIOS.map(s => `
+                <button type="button" data-id="${s.id}" class="service-card text-left bg-background-dark border-2 ${state.servicioId === s.id ? 'border-primary' : 'border-gray-800'} rounded-xl p-4 hover:border-primary transition-all">
+                  <div class="flex gap-3">
+                      <img src="${s.imagen}" alt="" class="h-16 w-16 rounded-lg object-cover"/>
+                      <div class="flex-1 min-w-0">
+                        <h4 class="text-white font-semibold">${UI.escape(s.nombre)}</h4>
+                        <p class="text-gray-400 text-xs mt-0.5 line-clamp-2">${UI.escape(s.descripcion)}</p>
+                        <div class="flex items-center justify-between mt-2 gap-2">
+                          <span class="text-xs text-primary uppercase">${UI.categoriaLabel(s.categoria)}</span>
+                          <span class="text-primary font-bold whitespace-nowrap">${UI.formatPrice(s.precio)}</span>
+                        </div>
+                      </div>
+                    </div>
+                </button>
+              `).join('')}
+            </div>
+            <div class="flex justify-end mt-6 pt-6 border-t border-gray-800">
+              <button id="btnNext1" class="btn-primary">Siguiente →</button>
+            </div>
+          `;
+          panel.querySelectorAll('.service-card').forEach(c => {
+            c.addEventListener('click', () => {
+              state.servicioId = c.dataset.id;
+              state.profesionalId = null;
+              save();
+              renderStep();
+              setTimeout(() => goToStep(2), 200);
+            });
+          });
+          document.getElementById('btnNext1').addEventListener('click', () => goToStep(2));
+        }
+        else if (state.step === 2) {
+          const servicio = UI.servicioById(state.servicioId);
+          const vets = VETERINARIOS.filter(v => v.especialidades.includes(state.servicioId));
+          panel.innerHTML = `
+            <h2 class="text-2xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Elige tu especialista</h2>
+            <p class="text-gray-400 text-sm mb-6">Para el servicio de <span class="text-primary font-semibold">${UI.escape(servicio.nombre)}</span></p>
+            ${vets.length === 0 ? `<p class="text-yellow-300 text-sm bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4">No hay especialistas disponibles para este servicio. Por favor elige otro.</p>` : `
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${vets.map(v => `
+                <button type="button" data-id="${v.id}" class="vet-card text-left bg-background-dark border-2 ${state.profesionalId === v.id ? 'border-primary' : 'border-gray-800'} rounded-xl p-5 hover:border-primary transition-all">
+                  <div class="flex items-center gap-4">
+                    <img src="${v.foto}" alt="" class="h-16 w-16 rounded-full object-cover border-2 border-primary/30"/>
+                    <div class="flex-1 min-w-0">
+                      <h4 class="text-white font-semibold">${UI.escape(v.nombre)}</h4>
+                      <p class="text-primary text-xs uppercase tracking-wider">${UI.escape(v.rol)}</p>
+                      <p class="text-gray-500 text-xs mt-0.5">${UI.escape(v.experiencia)} de experiencia</p>
+                      <p class="text-gray-400 text-xs mt-1 line-clamp-2">${UI.escape(v.bio)}</p>
+                      <div class="flex items-center gap-1 mt-1 text-xs text-gray-400">
+                        <span class="text-primary">★</span><span>${v.rating}</span>
+                      </div>
+                    </div>
+                  </div>
+                </button>
+              `).join('')}
+            </div>`}
+            <div class="flex justify-between mt-6 pt-6 border-t border-gray-800">
+              <button id="btnBack2" class="btn-outline">← Atrás</button>
+              <button id="btnNext2" class="btn-primary" ${vets.length === 0 ? 'disabled' : ''}>Siguiente →</button>
+            </div>
+          `;
+          if (vets.length > 0) {
+            panel.querySelectorAll('.vet-card').forEach(c => {
+              c.addEventListener('click', () => {
+                state.profesionalId = c.dataset.id;
+                save();
+                renderStep();
+              });
+            });
+          }
+          document.getElementById('btnBack2').addEventListener('click', () => goToStep(1));
+          document.getElementById('btnNext2').addEventListener('click', () => goToStep(3));
+        }
+        else if (state.step === 3) {
+          const mascotas = mascotasUsuario;
+          const selectedPetId = state.mascotaId;
+          panel.innerHTML = `
+            <h2 class="text-2xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Datos de tu mascota</h2>
+            <p class="text-gray-400 text-sm mb-6">Selecciona una mascota guardada o agrega una nueva</p>
+
+            ${mascotas.length > 0 ? `
+              <p class="text-xs uppercase tracking-wider text-gray-500 mb-3 font-medium">Mis mascotas</p>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                ${mascotas.map(m => `
+                  <button type="button" data-id="${m.id}" class="mascota-card text-left bg-background-dark border-2 ${selectedPetId === m.id ? 'border-primary' : 'border-gray-800'} rounded-xl p-4 hover:border-primary transition-all">
+                    <div class="flex items-center gap-3">
+                      <div class="pet-avatar text-2xl">${UI.especieById(m.especie).icon}</div>
+                      <div class="min-w-0">
+                        <p class="text-white font-semibold truncate">${UI.escape(m.nombre)}</p>
+                        <p class="text-gray-400 text-xs truncate">${UI.escape(m.raza || '')}</p>
+                      </div>
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
+              <p class="text-xs uppercase tracking-wider text-gray-500 mb-3 font-medium">O agrega una nueva</p>
+            ` : ''}
+
+            <div class="bg-background-dark border border-gray-800 rounded-xl p-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Nombre de tu mascota *</label>
+                  <input type="text" id="mNombre" value="${UI.escape((state.mascotaTemp && state.mascotaTemp.nombre) || '')}" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: Max"/>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Edad</label>
+                  <input type="text" id="mEdad" value="${UI.escape((state.mascotaTemp && state.mascotaTemp.edad) || '')}" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: 3 años"/>
+                </div>
+              </div>
+              <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-300 mb-2">Especie *</label>
+                <div class="flex flex-wrap gap-2" id="speciesGrid">
+                  ${ESPECIES.map(e => `
+                    <button type="button" data-id="${e.id}" class="species-pill border ${(state.mascotaTemp && state.mascotaTemp.especie === e.id) ? 'selected' : 'border-gray-700'} bg-background-card text-gray-300 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+                      <span class="text-lg">${e.icon}</span>${e.label}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+              <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-300 mb-2">Raza</label>
+                <input type="text" id="mRaza" value="${UI.escape((state.mascotaTemp && state.mascotaTemp.raza) || '')}" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: Golden Retriever"/>
+              </div>
+            </div>
+
+            <div class="flex justify-between mt-6 pt-6 border-t border-gray-800">
+              <button id="btnBack3" class="btn-outline">← Atrás</button>
+              <button id="btnNext3" class="btn-primary">Siguiente →</button>
+            </div>
+          `;
+
+          panel.querySelectorAll('.mascota-card').forEach(c => {
+            c.addEventListener('click', () => {
+              state.mascotaId = c.dataset.id;
+              state.mascotaTemp = null;
+              document.getElementById('mNombre').value = '';
+              document.getElementById('mEdad').value = '';
+              document.getElementById('mRaza').value = '';
+              document.querySelectorAll('.species-pill').forEach(x => {
+                x.classList.remove('selected');
+                x.classList.add('border-gray-700', 'text-gray-300');
+              });
+              save();
+              renderStep();
+            });
+          });
+
+          let selectedEspecie = state.mascotaTemp ? state.mascotaTemp.especie : null;
+          panel.querySelectorAll('.species-pill').forEach(b => {
+            b.addEventListener('click', () => {
+              panel.querySelectorAll('.species-pill').forEach(x => {
+                x.classList.remove('selected');
+                x.classList.add('border-gray-700', 'text-gray-300');
+              });
+              b.classList.add('selected');
+              b.classList.remove('border-gray-700', 'text-gray-300');
+              selectedEspecie = b.dataset.id;
+            });
+          });
+
+          document.getElementById('btnBack3').addEventListener('click', () => goToStep(2));
+          document.getElementById('btnNext3').addEventListener('click', () => {
+            if (state.mascotaId) { goToStep(4); return; }
+            const nombre = document.getElementById('mNombre').value.trim();
+            const edad = document.getElementById('mEdad').value.trim();
+            const raza = document.getElementById('mRaza').value.trim();
+            if (!nombre) { UI.toast('Ingresa el nombre de tu mascota', 'error'); return; }
+            if (!selectedEspecie) { UI.toast('Selecciona la especie', 'error'); return; }
+            state.mascotaTemp = { nombre, especie: selectedEspecie, raza, edad };
+            state.mascotaId = null;
+            save();
+            goToStep(4);
+          });
+        }
+        else if (state.step === 4) {
+          const today = new Date().toISOString().split('T')[0];
+          panel.innerHTML = `
+            <h2 class="text-2xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Fecha y hora</h2>
+            <p class="text-gray-400 text-sm mb-6">Selecciona el día y horario que prefieras</p>
+            <div class="mb-6 relative" id="datePickerWrap">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Fecha</label>
+              <button type="button" id="fechaBtn" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white text-left focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                  <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                  <span id="fechaDisplayText">Selecciona una fecha</span>
+                </span>
+                <svg class="h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              <input type="hidden" id="fechaInput" value="${state.fecha || today}"/>
+              <div id="calendarPopover" class="hidden absolute z-50 mt-2 left-0 right-0 sm:right-auto sm:w-96 bg-background-card border border-gray-800 rounded-xl shadow-2xl p-4">
+                <div class="flex items-center justify-between mb-4">
+                  <button type="button" id="calPrev" class="p-2 hover:bg-gray-800 rounded-lg text-gray-400 hover:text-white transition-colors">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                  </button>
+                  <div id="calMonthYear" class="text-white font-semibold capitalize"></div>
+                  <button type="button" id="calNext" class="p-2 hover:bg-gray-800 rounded-lg text-gray-400 hover:text-white transition-colors">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                  </button>
+                </div>
+                <div class="grid grid-cols-7 gap-1 mb-2">
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Dom</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Lun</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Mar</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Mié</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Jue</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Vie</div>
+                  <div class="text-center text-xs text-gray-500 font-medium py-1">Sáb</div>
+                </div>
+                <div id="calDays" class="grid grid-cols-7 gap-1"></div>
+              </div>
+            </div>
+            <div id="slotsBox">
+              <label class="block text-sm font-medium text-gray-300 mb-3">Horarios disponibles</label>
+              <div id="slotsGrid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2"></div>
+            </div>
+            <div class="mt-6">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Notas para el especialista (opcional)</label>
+              <textarea id="notasInput" rows="3" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" placeholder="Síntomas, alergias, comportamiento o solicitudes especiales...">${UI.escape(state.notas)}</textarea>
+            </div>
+            <div class="flex justify-between mt-6 pt-6 border-t border-gray-800">
+              <button id="btnBack4" class="btn-outline">← Atrás</button>
+              <button id="btnNext4" class="btn-primary">Siguiente →</button>
+            </div>
+          `;
+
+          const fechaInput = document.getElementById('fechaInput');
+          const fechaBtn = document.getElementById('fechaBtn');
+          const fechaDisplayText = document.getElementById('fechaDisplayText');
+          const calendarPopover = document.getElementById('calendarPopover');
+          const calPrev = document.getElementById('calPrev');
+          const calNext = document.getElementById('calNext');
+          const calMonthYear = document.getElementById('calMonthYear');
+          const calDays = document.getElementById('calDays');
+          const slotsGrid = document.getElementById('slotsGrid');
+
+          const monthNames = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+          const minDate = new Date(today + 'T00:00:00');
+          minDate.setHours(0,0,0,0);
+          const maxDate = new Date(minDate);
+          maxDate.setMonth(maxDate.getMonth() + 3);
+
+          function formatDisplay(iso) {
+            if (!iso) return 'Selecciona una fecha';
+            const [y, m, d] = iso.split('-');
+            return `${d}-${m}-${y}`;
+          }
+          function toISO(d) {
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+          }
+          function updateDisplay() {
+            fechaDisplayText.textContent = formatDisplay(fechaInput.value);
+          }
+
+          let viewYear, viewMonth;
+          function renderCalendar() {
+            calMonthYear.textContent = `${monthNames[viewMonth]} de ${viewYear}`;
+            calDays.innerHTML = '';
+            const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+            const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+            for (let i = 0; i < firstDay; i++) {
+              calDays.appendChild(document.createElement('div'));
+            }
+            const selectedISO = fechaInput.value;
+            const todayISO = today;
+            for (let d = 1; d <= daysInMonth; d++) {
+              const cell = document.createElement('button');
+              cell.type = 'button';
+              const cellDate = new Date(viewYear, viewMonth, d);
+              const cellISO = toISO(cellDate);
+              cell.textContent = d;
+              cell.className = 'h-9 rounded-lg text-sm font-medium transition-colors flex items-center justify-center';
+              if (cellDate < minDate || cellDate > maxDate) {
+                cell.disabled = true;
+                cell.classList.add('text-gray-700', 'cursor-not-allowed');
+              } else if (cellISO === selectedISO) {
+                cell.classList.add('bg-primary', 'text-white', 'font-bold');
+              } else if (cellISO === todayISO) {
+                cell.classList.add('border', 'border-primary', 'text-primary', 'hover:bg-primary/10');
+              } else {
+                cell.classList.add('text-white', 'hover:bg-gray-800');
+              }
+              cell.addEventListener('click', () => {
+                fechaInput.value = cellISO;
+                updateDisplay();
+                calendarPopover.classList.add('hidden');
+                renderSlots();
+              });
+              calDays.appendChild(cell);
+            }
+          }
+
+          updateDisplay();
+          const initial = fechaInput.value ? new Date(fechaInput.value + 'T00:00:00') : new Date();
+          viewYear = initial.getFullYear();
+          viewMonth = initial.getMonth();
+          renderCalendar();
+
+          fechaBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const willOpen = calendarPopover.classList.contains('hidden');
+            calendarPopover.classList.toggle('hidden');
+            if (willOpen) renderCalendar();
+          });
+          calPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (viewMonth === 0) { viewMonth = 11; viewYear--; } else viewMonth--;
+            renderCalendar();
+          });
+          calNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (viewMonth === 11) { viewMonth = 0; viewYear++; } else viewMonth++;
+            renderCalendar();
+          });
+          document.addEventListener('click', (e) => {
+            if (!calendarPopover.contains(e.target) && !fechaBtn.contains(e.target)) {
+              calendarPopover.classList.add('hidden');
+            }
+          });
+
+          function renderSlots() {
+            state.fecha = fechaInput.value;
+            const slots = UI.generateSlots(state.servicioId, state.fecha);
+            if (!slots.length) {
+              slotsGrid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-8">No hay horarios disponibles para esta fecha. Prueba con otro día.</p>';
+              return;
+            }
+            slotsGrid.innerHTML = slots.map(s => `
+              <button type="button" data-time="${s}" class="time-slot border ${state.hora === s ? 'border-primary bg-primary/10' : 'border-gray-700'} bg-background-dark text-white py-2 px-3 rounded-lg text-sm font-medium">${s}</button>
+            `).join('');
+            slotsGrid.querySelectorAll('.time-slot').forEach(b => {
+              b.addEventListener('click', () => {
+                state.hora = b.dataset.time;
+                save();
+                slotsGrid.querySelectorAll('.time-slot').forEach(x => {
+                  x.classList.remove('border-primary', 'bg-primary/10');
+                  x.classList.add('border-gray-700');
+                });
+                b.classList.add('border-primary', 'bg-primary/10');
+                b.classList.remove('border-gray-700');
+              });
+            });
+          }
+          renderSlots();
+
+          document.getElementById('notasInput').addEventListener('input', (e) => { state.notas = e.target.value; save(); });
+          document.getElementById('btnBack4').addEventListener('click', () => goToStep(3));
+          document.getElementById('btnNext4').addEventListener('click', () => goToStep(5));
+        }
+        else if (state.step === 5) {
+          const userNow = Auth.current();
+          const servicio = UI.servicioById(state.servicioId);
+          const vet = UI.veterinarioById(state.profesionalId);
+
+          let mascotaLabel = '—';
+          if (state.mascotaId) {
+            const m = Mascotas.get(state.mascotaId);
+            if (m) mascotaLabel = m.nombre + ' (' + UI.especieById(m.especie).label + ')';
+          } else if (state.mascotaTemp && state.mascotaTemp.nombre) {
+            mascotaLabel = state.mascotaTemp.nombre + ' (' + UI.especieById(state.mascotaTemp.especie).label + ')';
+          }
+
+          panel.innerHTML = `
+            <h2 class="text-2xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Confirma tu reserva</h2>
+            <p class="text-gray-400 text-sm mb-6">Revisa los detalles antes de confirmar</p>
+            <div class="space-y-3">
+              <div class="flex items-center gap-4 p-4 bg-background-dark rounded-xl border border-gray-800">
+                <img src="${servicio.imagen}" class="h-14 w-14 rounded-lg object-cover"/>
+                <div>
+                  <p class="text-white font-semibold">${UI.escape(servicio.nombre)}</p>
+                  <p class="text-gray-400 text-sm">${servicio.duracion} minutos · ${UI.categoriaLabel(servicio.categoria)}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 bg-background-dark rounded-xl border border-gray-800">
+                <img src="${vet.foto}" class="h-14 w-14 rounded-full object-cover"/>
+                <div>
+                  <p class="text-white font-semibold">${UI.escape(vet.nombre)}</p>
+                  <p class="text-gray-400 text-sm">${UI.escape(vet.rol)} · ${UI.escape(vet.colegiatura)}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 p-4 bg-background-dark rounded-xl border border-gray-800">
+                <div class="pet-avatar">${UI.especieById(state.mascotaId ? Mascotas.get(state.mascotaId)?.especie : state.mascotaTemp.especie).icon}</div>
+                <div>
+                  <p class="text-white font-semibold">${UI.escape(mascotaLabel)}</p>
+                  <p class="text-gray-400 text-sm">Mascota del dueño</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="p-4 bg-background-dark rounded-xl border border-gray-800">
+                  <p class="text-xs text-gray-400 uppercase tracking-wider">Fecha</p>
+                  <p class="text-white font-semibold mt-1">${UI.formatDate(state.fecha)}</p>
+                </div>
+                <div class="p-4 bg-background-dark rounded-xl border border-gray-800">
+                  <p class="text-xs text-gray-400 uppercase tracking-wider">Hora</p>
+                  <p class="text-white font-semibold mt-1">${state.hora}</p>
+                </div>
+              </div>
+              <div class="p-4 bg-background-dark rounded-xl border border-gray-800">
+                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Dueño</p>
+                <p class="text-white font-semibold">${UI.escape(userNow.nombre)}</p>
+                <p class="text-gray-400 text-sm">${UI.escape(userNow.email)} · ${UI.escape(userNow.telefono)}</p>
+              </div>
+              ${state.notas ? `<div class="p-4 bg-background-dark rounded-xl border border-gray-800">
+                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Notas</p>
+                <p class="text-white text-sm">${UI.escape(state.notas)}</p>
+              </div>` : ''}
+              <div class="p-4 bg-primary/10 border border-primary/30 rounded-xl flex items-center justify-between">
+                <p class="text-white font-semibold">Total a pagar</p>
+                <p class="text-primary text-2xl font-bold" style="font-family: 'Fredoka', sans-serif;">${UI.formatPrice(servicio.precio)}</p>
+              </div>
+            </div>
+            <div class="flex justify-between mt-6 pt-6 border-t border-gray-800">
+              <button id="btnBack5" class="btn-outline">← Atrás</button>
+              <button id="btnConfirm" class="btn-primary">Confirmar reserva →</button>
+            </div>
+          `;
+          document.getElementById('btnBack5').addEventListener('click', () => goToStep(4));
+          document.getElementById('btnConfirm').addEventListener('click', () => {
+            const userNow = Auth.current();
+            const mascotaFinal = state.mascotaId
+              ? (() => { const m = Mascotas.get(state.mascotaId); return { nombre: m.nombre, especie: m.especie, raza: m.raza, edad: m.edad }; })()
+              : state.mascotaTemp;
+
+            if (!state.mascotaId && mascotaFinal) {
+              Mascotas.create(userNow.id, mascotaFinal);
+            }
+
+            const nueva = Reservas.create({
+              userId: userNow.id,
+              servicioId: state.servicioId,
+              profesionalId: state.profesionalId,
+              fecha: state.fecha,
+              hora: state.hora,
+              precio: UI.servicioById(state.servicioId).precio,
+              mascota: mascotaFinal,
+              notas: state.notas
+            });
+            Reservas.setCurrent(nueva.id);
+            Reservas.clearDraft();
+            window.location.href = 'booking-confirmation.html?reserva=' + nueva.id;
+          });
+        }
+        updateResumen();
+      }
+
+      updateDots();
+      if (state.servicioId && state.profesionalId && (state.mascotaId || state.mascotaTemp) && state.fecha && state.hora) state.step = 5;
+      renderStep();
+    }
+  </script>
+</body>
+</html>

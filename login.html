@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="" class="bg-background-dark text-gray-200 font-sans">
+  <div class="min-h-screen flex flex-col">
+    <main class="flex-1 flex">
+      <div class="hidden lg:flex lg:w-1/2 relative bg-cover bg-center" style="background-image: linear-gradient(rgba(10,31,21,0.55), rgba(10,31,21,0.75)), url('assets/hero-vet.jpg');">
+        <div class="absolute inset-0 flex flex-col justify-between p-12 text-white">
+          <a href="index.html" class="flex items-center gap-3 z-10">
+            <svg class="h-10 w-10 text-primary" viewBox="0 0 48 48" fill="none"><path d="M14 22c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zm20 0c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zM9 32c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5zm30 0c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5z" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/><ellipse cx="24" cy="30" rx="10" ry="11" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/><circle cx="21" cy="28" r="1.2" fill="currentColor"/><circle cx="27" cy="28" r="1.2" fill="currentColor"/><path d="M22 33 Q24 35 26 33" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <div>
+              <h2 class="text-xl font-bold leading-tight" style="font-family: 'Fredoka', sans-serif;">Patitas Felices</h2>
+              <p class="text-xs uppercase tracking-widest text-primary/80">Veterinaria</p>
+            </div>
+          </a>
+          <div class="z-10">
+            <h1 class="text-5xl font-bold mb-4 text-balance" style="font-family: 'Fredoka', sans-serif;">Bienvenido de vuelta</h1>
+            <p class="text-lg text-gray-200 max-w-md">Ingresa a tu cuenta para gestionar las citas de tu mascota, ver su historial y acceder a beneficios exclusivos.</p>
+          </div>
+          <div class="z-10 flex gap-6 text-sm text-gray-300">
+            <div><p class="text-primary font-bold text-2xl" style="font-family: 'Fredoka', sans-serif;">15+</p><p class="text-xs uppercase tracking-wider">Años</p></div>
+            <div><p class="text-primary font-bold text-2xl" style="font-family: 'Fredoka', sans-serif;">12K+</p><p class="text-xs uppercase tracking-wider">Mascotas</p></div>
+            <div><p class="text-primary font-bold text-2xl" style="font-family: 'Fredoka', sans-serif;">4.9</p><p class="text-xs uppercase tracking-wider">Rating</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+        <div class="w-full max-w-md">
+          <a href="index.html" class="lg:hidden flex items-center gap-3 mb-8 justify-center">
+            <svg class="h-9 w-9 text-primary" viewBox="0 0 48 48" fill="none"><path d="M14 22c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zm20 0c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zM9 32c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5zm30 0c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5z" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/><ellipse cx="24" cy="30" rx="10" ry="11" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/></svg>
+            <div>
+              <h2 class="text-lg font-bold text-white leading-tight" style="font-family: 'Fredoka', sans-serif;">Patitas Felices</h2>
+              <p class="text-[10px] uppercase tracking-widest text-primary/80">Veterinaria</p>
+            </div>
+          </a>
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2" style="font-family: 'Fredoka', sans-serif;">Iniciar sesión</h2>
+            <p class="text-gray-400">Ingresa tus credenciales para continuar</p>
+          </div>
+
+          <form id="loginForm" class="space-y-5">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </span>
+                <input type="email" id="email" required class="w-full bg-background-card border border-gray-700 rounded-lg pl-12 pr-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="tu@email.com"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Contraseña</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </span>
+                <input type="password" id="password" required minlength="6" class="w-full bg-background-card border border-gray-700 rounded-lg pl-12 pr-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="••••••••"/>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+              <label class="flex items-center gap-2 text-gray-300 cursor-pointer">
+                <input type="checkbox" class="h-4 w-4 rounded border-gray-600 text-primary focus:ring-primary bg-background-dark"/>
+                Recordarme
+              </label>
+              <a href="forgot-password.html" class="text-primary hover:text-primary-light transition-colors">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center">Ingresar</button>
+
+            <div class="relative my-6">
+              <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-800"></div></div>
+              <div class="relative flex justify-center text-xs"><span class="bg-background-dark px-3 text-gray-500 uppercase tracking-wider">o</span></div>
+            </div>
+
+            <p class="text-center text-sm text-gray-400">
+              ¿Aún no tienes cuenta? <a href="register.html" class="text-primary hover:text-primary-light font-semibold transition-colors">Registrarse</a>
+            </p>
+          </form>
+
+          <div class="mt-8 bg-background-card border border-primary/30 rounded-lg p-4 text-xs text-gray-400">
+            <p class="font-semibold text-primary mb-2">👤 Usuarios de prueba:</p>
+            <p>juan@test.com / 123456</p>
+            <p>maria@test.com / 123456</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      if (Auth.isLogged()) {
+        const redirect = Storage.get(STORAGE_KEYS.REDIRECT, 'index.html');
+        Storage.remove(STORAGE_KEYS.REDIRECT);
+        window.location.href = redirect;
+      }
+      document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const result = Auth.login(email, password);
+        if (!result.ok) {
+          UI.toast(result.error, 'error');
+          return;
+        }
+        UI.toast('¡Bienvenido de vuelta, ' + result.user.nombre.split(' ')[0] + '!');
+        const redirect = Storage.get(STORAGE_KEYS.REDIRECT, 'index.html');
+        Storage.remove(STORAGE_KEYS.REDIRECT);
+        setTimeout(() => window.location.href = redirect, 600);
+      });
+    }
+  </script>
+</body>
+</html>

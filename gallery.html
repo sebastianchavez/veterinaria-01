@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="gallery" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Nuestras instalaciones</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Galería</h1>
+      <p class="text-gray-400 max-w-2xl mx-auto">Conoce nuestras instalaciones modernas y el equipo que cuida a tu mascota.</p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-2 mb-8" id="filterGallery">
+      <button data-filter="todas" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-primary bg-primary text-white">Todas</button>
+      <button data-filter="clinica" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Clínica</button>
+      <button data-filter="equipo" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Equipo</button>
+      <button data-filter="mascotas" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Mascotas felices</button>
+      <button data-filter="estetica" class="filter-btn px-4 py-2 rounded-full text-sm font-semibold border border-gray-700 text-gray-300 hover:border-primary">Estética</button>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid"></div>
+
+    <div class="text-center mt-12">
+      <p class="text-gray-300 mb-6 max-w-xl mx-auto">¿Quieres que tu mascota sea parte de nuestra galería? Etiquétanos en Instagram con #PatitasFelices.</p>
+      <a href="booking.html" class="btn-primary">Reservar una visita</a>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    const GALLERY = [
+      { cat: 'clinica', img: 'assets/gallery-clinic.jpg', alt: 'Recepción' },
+      { cat: 'clinica', img: 'assets/service-surgery.jpg', alt: 'Sala de cirugía' },
+      { cat: 'clinica', img: 'assets/service-lab.jpg', alt: 'Laboratorio' },
+      { cat: 'equipo', img: 'assets/service-emergency.jpg', alt: 'Equipo médico' },
+      { cat: 'equipo', img: 'assets/vet-woman.jpg', alt: 'Veterinaria' },
+      { cat: 'equipo', img: 'assets/vet-man.jpg', alt: 'Veterinario' },
+      { cat: 'mascotas', img: 'assets/pet-dog.jpg', alt: 'Perro feliz' },
+      { cat: 'mascotas', img: 'assets/pet-cat.jpg', alt: 'Gato feliz' },
+      { cat: 'mascotas', img: 'assets/service-vaccine.jpg', alt: 'Cachorro' },
+      { cat: 'mascotas', img: 'assets/service-checkup.jpg', alt: 'Mascota en revisión' },
+      { cat: 'estetica', img: 'assets/service-grooming.jpg', alt: 'Spa canino' },
+      { cat: 'estetica', img: 'assets/vet-woman.jpg', alt: 'Estética' }
+    ];
+
+    function pageInit() {
+      const grid = document.getElementById('galleryGrid');
+      function render(filter) {
+        const list = filter === 'todas' ? GALLERY : GALLERY.filter(g => g.cat === filter);
+        grid.innerHTML = list.map((g, i) => `
+          <div class="galeria-item aspect-square border border-gray-800" onclick="window.openLightbox('${UI.escape(g.img)}','${UI.escape(g.alt)}')">
+            <img src="${g.img}" alt="${UI.escape(g.alt)}" class="w-full h-full object-cover"/>
+          </div>
+        `).join('');
+      }
+      render('todas');
+      document.querySelectorAll('#filterGallery .filter-btn').forEach(b => {
+        b.addEventListener('click', () => {
+          document.querySelectorAll('#filterGallery .filter-btn').forEach(x => {
+            x.classList.remove('bg-primary', 'text-white', 'border-primary');
+            x.classList.add('border-gray-700', 'text-gray-300');
+          });
+          b.classList.add('bg-primary', 'text-white', 'border-primary');
+          b.classList.remove('border-gray-700', 'text-gray-300');
+          render(b.dataset.filter);
+        });
+      });
+    }
+
+    window.openLightbox = function(src, alt) {
+      const lb = document.createElement('div');
+      lb.className = 'lightbox';
+      lb.innerHTML = `<img src="${src}" alt="${alt}"/>`;
+      lb.addEventListener('click', () => lb.remove());
+      document.body.appendChild(lb);
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cita Confirmada · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <div class="checkmark-circle mx-auto mb-6">
+          <div class="background"></div>
+          <div class="checkmark"></div>
+        </div>
+        <p class="text-primary uppercase tracking-[0.3em] text-xs mb-3 font-medium">¡Listo!</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Cita confirmada</h1>
+        <p class="text-gray-400">Tu reserva fue creada exitosamente</p>
+      </div>
+
+      <div class="bg-background-card border border-gray-800 rounded-2xl p-8 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-5 border-b border-gray-800">
+          <div>
+            <p class="text-xs text-gray-400 uppercase tracking-widest mb-1">Código de reserva</p>
+            <p id="codigoReserva" class="text-primary font-mono font-bold text-2xl">PF</p>
+          </div>
+          <span id="estadoBadge" class="text-xs uppercase px-4 py-2 rounded-full border font-semibold"></span>
+        </div>
+
+        <div id="reservaContent" class="space-y-5"></div>
+      </div>
+
+      <div class="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/30 rounded-2xl p-6 mb-6">
+        <div class="flex items-start gap-3">
+          <svg class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <div>
+            <h3 class="text-white font-semibold mb-1">¿Qué sigue?</h3>
+            <p class="text-gray-300 text-sm">Te enviamos un email de confirmación con todos los detalles. Recibirás un recordatorio 24 horas antes de tu cita. Si lo prefieres, puedes pagar tu reserva ahora.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a id="btnPagar" href="#" class="btn-primary justify-center text-sm">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          Pagar ahora
+        </a>
+        <a href="profile.html" class="btn-outline justify-center text-sm">Ver mis reservas</a>
+        <a href="index.html" class="btn-outline justify-center text-sm">Volver al inicio</a>
+      </div>
+
+      <div class="mt-10 text-center">
+        <h3 class="text-white font-semibold mb-3">Recomendaciones para tu cita</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+          <div class="bg-background-card border border-gray-800 rounded-xl p-4 flex items-start gap-3">
+            <div class="text-2xl flex-shrink-0">📋</div>
+            <div>
+              <p class="text-white font-medium text-sm">Lleva el carnet</p>
+              <p class="text-gray-400 text-xs">Trae el historial de vacunación de tu mascota.</p>
+            </div>
+          </div>
+          <div class="bg-background-card border border-gray-800 rounded-xl p-4 flex items-start gap-3">
+            <div class="text-2xl flex-shrink-0">⏱️</div>
+            <div>
+              <p class="text-white font-medium text-sm">Llega 10 min antes</p>
+              <p class="text-gray-400 text-xs">Para una atención sin demoras.</p>
+            </div>
+          </div>
+          <div class="bg-background-card border border-gray-800 rounded-xl p-4 flex items-start gap-3">
+            <div class="text-2xl flex-shrink-0">🦮</div>
+            <div>
+              <p class="text-white font-medium text-sm">Usa correa</p>
+              <p class="text-gray-400 text-xs">Para perros. Gatos en transportín.</p>
+            </div>
+          </div>
+          <div class="bg-background-card border border-gray-800 rounded-xl p-4 flex items-start gap-3">
+            <div class="text-2xl flex-shrink-0">🚫</div>
+            <div>
+              <p class="text-white font-medium text-sm">Anula con 24h</p>
+              <p class="text-gray-400 text-xs">Anticipación si no puedes asistir.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('reserva') || Reservas.getCurrent();
+      const reserva = id ? Reservas.get(id) : null;
+
+      if (!reserva) {
+        document.getElementById('reservaContent').innerHTML = '<p class="text-center text-gray-400 py-6">No se encontró la reserva.</p>';
+        document.getElementById('codigoReserva').textContent = '—';
+        return;
+      }
+
+      const codigo = 'PF-' + reserva.id.slice(-6).toUpperCase();
+      document.getElementById('codigoReserva').textContent = codigo;
+
+      const user = Auth.current();
+      const servicio = UI.servicioById(reserva.servicioId);
+      const vet = UI.veterinarioById(reserva.profesionalId);
+      const estado = UI.estadoBadge(reserva.estado);
+
+      document.getElementById('estadoBadge').textContent = estado.label;
+      document.getElementById('estadoBadge').className = `text-xs uppercase px-4 py-2 rounded-full border font-semibold ${estado.cls}`;
+
+      const especieLabel = reserva.mascota ? UI.especieById(reserva.mascota.especie)?.label : '';
+      const mascotaNombre = reserva.mascota?.nombre || '—';
+      const mascotaRaza = reserva.mascota?.raza || '';
+      const mascotaEdad = reserva.mascota?.edad || '';
+
+      document.getElementById('reservaContent').innerHTML = `
+        <div class="flex items-center gap-4">
+          <img src="${servicio.imagen}" class="h-16 w-16 rounded-lg object-cover"/>
+          <div class="flex-1">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Servicio</p>
+            <p class="text-white font-semibold">${UI.escape(servicio.nombre)}</p>
+            <p class="text-gray-400 text-sm">${servicio.duracion} minutos · ${UI.formatPrice(servicio.precio)}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <img src="${vet.foto}" class="h-16 w-16 rounded-full object-cover"/>
+          <div class="flex-1">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Profesional</p>
+            <p class="text-white font-semibold">${UI.escape(vet.nombre)}</p>
+            <p class="text-gray-400 text-sm">${UI.escape(vet.rol)}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="pet-avatar text-2xl">${UI.especieById(reserva.mascota?.especie)?.icon || '🐾'}</div>
+          <div class="flex-1">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Mascota</p>
+            <p class="text-white font-semibold">${UI.escape(mascotaNombre)}</p>
+            <p class="text-gray-400 text-sm">${UI.escape(especieLabel)} ${mascotaRaza ? '· ' + UI.escape(mascotaRaza) : ''} ${mascotaEdad ? '· ' + UI.escape(mascotaEdad) : ''}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-background-dark border border-gray-800 rounded-xl p-4">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Fecha</p>
+            <p class="text-white font-semibold mt-1">${UI.formatDate(reserva.fecha)}</p>
+          </div>
+          <div class="bg-background-dark border border-gray-800 rounded-xl p-4">
+            <p class="text-xs text-gray-400 uppercase tracking-wider">Hora</p>
+            <p class="text-white font-semibold mt-1">${reserva.hora}</p>
+          </div>
+        </div>
+        <div class="bg-background-dark border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Ubicación</p>
+          <p class="text-white font-medium">Av. Pardo y Aliaga 480, San Isidro, Lima</p>
+          <p class="text-gray-400 text-sm">${UI.escape(user.nombre)} · ${UI.escape(user.telefono)}</p>
+        </div>
+        ${reserva.notas ? `<div class="bg-background-dark border border-gray-800 rounded-xl p-4">
+          <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">Notas</p>
+          <p class="text-white text-sm">${UI.escape(reserva.notas)}</p>
+        </div>` : ''}
+      `;
+
+      document.getElementById('btnPagar').addEventListener('click', (e) => {
+        e.preventDefault();
+        Reservas.setPagoDraft({ reservaId: reserva.id });
+        window.location.href = 'payment.html';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="" class="bg-background-dark text-gray-200 font-sans">
+  <div class="min-h-screen flex flex-col">
+    <main class="flex-1 flex">
+      <div class="hidden lg:flex lg:w-1/2 relative bg-cover bg-center" style="background-image: linear-gradient(rgba(10,31,21,0.55), rgba(10,31,21,0.75)), url('assets/pet-dog.jpg');">
+        <div class="absolute inset-0 flex flex-col justify-between p-12 text-white">
+          <a href="index.html" class="flex items-center gap-3 z-10">
+            <svg class="h-10 w-10 text-primary" viewBox="0 0 48 48" fill="none"><path d="M14 22c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zm20 0c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zM9 32c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5zm30 0c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5z" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/><ellipse cx="24" cy="30" rx="10" ry="11" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/></svg>
+            <div>
+              <h2 class="text-xl font-bold leading-tight" style="font-family: 'Fredoka', sans-serif;">Patitas Felices</h2>
+              <p class="text-xs uppercase tracking-widest text-primary/80">Veterinaria</p>
+            </div>
+          </a>
+          <div class="z-10">
+            <h1 class="text-5xl font-bold mb-4 text-balance" style="font-family: 'Fredoka', sans-serif;">Únete a la familia</h1>
+            <p class="text-lg text-gray-200 max-w-md">Crea tu cuenta y empieza a cuidar mejor a tu mascota con reservas rápidas, historial completo y beneficios exclusivos.</p>
+          </div>
+          <div class="z-10 grid grid-cols-2 gap-4 text-sm text-gray-300 max-w-md">
+            <div class="flex items-center gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Reserva en segundos</div>
+            <div class="flex items-center gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Historial completo</div>
+            <div class="flex items-center gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Recordatorios automáticos</div>
+            <div class="flex items-center gap-2"><svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pagos seguros</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+        <div class="w-full max-w-md">
+          <a href="index.html" class="lg:hidden flex items-center gap-3 mb-8 justify-center">
+            <svg class="h-9 w-9 text-primary" viewBox="0 0 48 48" fill="none"><path d="M14 22c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zm20 0c-3 0-5-3-5-6s2-6 5-6 5 3 5 6-2 6-5 6zM9 32c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5zm30 0c-2 0-4-2-4-5s2-5 4-5 4 2 4 5-2 5-4 5z" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/><ellipse cx="24" cy="30" rx="10" ry="11" stroke="currentColor" stroke-width="2.5" fill="currentColor" fill-opacity="0.15"/></svg>
+            <div>
+              <h2 class="text-lg font-bold text-white leading-tight" style="font-family: 'Fredoka', sans-serif;">Patitas Felices</h2>
+              <p class="text-[10px] uppercase tracking-widest text-primary/80">Veterinaria</p>
+            </div>
+          </a>
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2" style="font-family: 'Fredoka', sans-serif;">Crear cuenta</h2>
+            <p class="text-gray-400">Regístrate para empezar a reservar citas</p>
+          </div>
+
+          <form id="registerForm" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Nombre completo *</label>
+                <input type="text" id="nombre" required class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Tu nombre"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">DNI</label>
+                <input type="text" id="dni" maxlength="8" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="12345678"/>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
+              <input type="email" id="email" required class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="tu@email.com"/>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Teléfono *</label>
+              <input type="tel" id="telefono" required class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="+51 999 999 999"/>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Contraseña *</label>
+              <input type="password" id="password" required minlength="6" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Mínimo 6 caracteres"/>
+              <p class="text-xs text-gray-500 mt-1">Mínimo 6 caracteres</p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Confirmar contraseña *</label>
+              <input type="password" id="password2" required minlength="6" class="w-full bg-background-card border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Repite tu contraseña"/>
+            </div>
+
+            <div class="flex items-start gap-2">
+              <input type="checkbox" id="acepto" required class="mt-1 h-4 w-4 rounded border-gray-600 text-primary focus:ring-primary bg-background-dark"/>
+              <label for="acepto" class="text-sm text-gray-400">Acepto los <a href="terms.html" class="text-primary hover:underline">Términos y Condiciones</a> y la <a href="privacy.html" class="text-primary hover:underline">Política de Privacidad</a>.</label>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center">Crear cuenta</button>
+
+            <p class="text-center text-sm text-gray-400 pt-3">
+              ¿Ya tienes cuenta? <a href="login.html" class="text-primary hover:text-primary-light font-semibold transition-colors">Iniciar sesión</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+        const dni = document.getElementById('dni').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+        const acepto = document.getElementById('acepto').checked;
+
+        if (!nombre || !email || !telefono || !password) { UI.toast('Completa todos los campos obligatorios', 'error'); return; }
+        if (password !== password2) { UI.toast('Las contraseñas no coinciden', 'error'); return; }
+        if (!acepto) { UI.toast('Debes aceptar los términos y condiciones', 'error'); return; }
+
+        const result = Auth.register({ nombre, dni, email, telefono, password });
+        if (!result.ok) { UI.toast(result.error, 'error'); return; }
+
+        Auth.login(email, password);
+        UI.toast('¡Cuenta creada! Bienvenido a Patitas Felices');
+        const redirect = Storage.get(STORAGE_KEYS.REDIRECT, 'index.html');
+        Storage.remove(STORAGE_KEYS.REDIRECT);
+        setTimeout(() => window.location.href = redirect, 600);
+      });
+    }
+  </script>
+</body>
+</html>
