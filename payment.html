@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pago de Reserva · Patitas Felices</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { primary: '#059669', 'primary-light': '#10b981', 'background-dark': '#0a1f15', 'background-card': '#0f2a1c' },
+          fontFamily: { display: ['Fredoka'], sans: ['Inter'] }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="" class="bg-background-dark text-gray-200 font-sans">
+  <div id="appHeader"></div>
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-10">
+      <p class="text-primary uppercase tracking-[0.3em] text-xs mb-2 font-medium">Pago seguro</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-3" style="font-family: 'Fredoka', sans-serif;">Finalizar pago</h1>
+      <p class="text-gray-400">Elige tu método de pago preferido</p>
+    </div>
+
+    <div id="content" class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8"></div>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="js/main.js"></script>
+  <script>
+    function pageInit() {
+      if (!UI.requireAuth('payment.html')) return;
+
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('reserva') || (Reservas.getPagoDraft() && Reservas.getPagoDraft().reservaId);
+      const reserva = id ? Reservas.get(id) : null;
+      const user = Auth.current();
+
+      if (!reserva || reserva.userId !== user.id) {
+        document.getElementById('content').innerHTML = `
+          <div class="lg:col-span-3 bg-background-card border border-gray-800 rounded-2xl p-10 text-center">
+            <p class="text-white font-semibold mb-3">No hay reserva pendiente de pago</p>
+            <a href="booking.html" class="btn-primary">Reservar una cita</a>
+          </div>
+        `;
+        return;
+      }
+
+      if (reserva.pago === 'pagado') {
+        window.location.href = 'payment-confirmed.html?reserva=' + reserva.id;
+        return;
+      }
+
+      const servicio = UI.servicioById(reserva.servicioId);
+      const vet = UI.veterinarioById(reserva.profesionalId);
+      const especieIcon = reserva.mascota ? UI.especieById(reserva.mascota.especie)?.icon || '🐾' : '🐾';
+      const precio = reserva.precio || servicio.precio;
+      const codigo = 'PF-' + reserva.id.slice(-6).toUpperCase();
+
+      document.getElementById('content').innerHTML = `
+        <aside class="lg:col-span-1 order-2 lg:order-1">
+          <div class="bg-background-card border border-gray-800 rounded-2xl p-6 lg:sticky lg:top-28">
+            <h3 class="text-lg font-bold text-white mb-4" style="font-family: 'Fredoka', sans-serif;">Resumen</h3>
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-gray-800">
+              <img src="${servicio.imagen}" class="h-14 w-14 rounded-lg object-cover"/>
+              <div class="min-w-0">
+                <p class="text-white font-semibold truncate">${UI.escape(servicio.nombre)}</p>
+                <p class="text-gray-400 text-xs truncate">${UI.escape(vet.nombre)}</p>
+              </div>
+            </div>
+            <div class="space-y-2 text-sm mb-4">
+              <div class="flex justify-between gap-2"><span class="text-gray-400">Reserva:</span><span class="text-primary font-mono text-xs">${codigo}</span></div>
+              <div class="flex justify-between gap-2"><span class="text-gray-400">Mascota:</span><span class="text-white">${UI.escape(reserva.mascota?.nombre || '—')}</span></div>
+              <div class="flex justify-between gap-2"><span class="text-gray-400">Fecha:</span><span class="text-white text-right">${UI.formatDateShort(reserva.fecha)}</span></div>
+              <div class="flex justify-between gap-2"><span class="text-gray-400">Hora:</span><span class="text-white">${reserva.hora}</span></div>
+            </div>
+            <div class="border-t border-gray-800 pt-4 space-y-2 text-sm">
+              <div class="flex justify-between"><span class="text-gray-400">Subtotal:</span><span class="text-white">${UI.formatPrice(precio)}</span></div>
+              <div class="flex justify-between"><span class="text-gray-400">IGV (incluido):</span><span class="text-white">${UI.formatPrice(precio * 0.18 / 1.18)}</span></div>
+              <div class="flex justify-between items-center pt-2 border-t border-gray-800 mt-2">
+                <span class="text-white font-semibold text-base">Total:</span>
+                <span class="text-primary text-2xl font-bold" style="font-family: 'Fredoka', sans-serif;">${UI.formatPrice(precio)}</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-2 order-1 lg:order-2">
+          <div class="bg-background-card border border-gray-800 rounded-2xl p-6 md:p-8">
+            <h3 class="text-xl font-bold text-white mb-1" style="font-family: 'Fredoka', sans-serif;">Método de pago</h3>
+            <p class="text-gray-400 text-sm mb-6">Selecciona cómo prefieres pagar</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6" id="methodsGrid">
+              <button type="button" data-metodo="yape" class="method-card text-left bg-background-dark border-2 border-primary rounded-xl p-4 transition-all">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                    <span class="text-purple-400 font-bold text-sm">Y</span>
+                  </div>
+                  <svg class="h-5 w-5 text-primary hidden check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <p class="text-white font-semibold">Yape / Plin</p>
+                <p class="text-gray-400 text-xs mt-1">Transferencia móvil</p>
+              </button>
+              <button type="button" data-metodo="tarjeta" class="method-card text-left bg-background-dark border-2 border-gray-800 rounded-xl p-4 hover:border-primary transition-all">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                    <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                  </div>
+                  <svg class="h-5 w-5 text-primary hidden check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <p class="text-white font-semibold">Tarjeta</p>
+                <p class="text-gray-400 text-xs mt-1">Crédito o débito</p>
+              </button>
+              <button type="button" data-metodo="efectivo" class="method-card text-left bg-background-dark border-2 border-gray-800 rounded-xl p-4 hover:border-primary transition-all">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+                    <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                  </div>
+                  <svg class="h-5 w-5 text-primary hidden check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <p class="text-white font-semibold">Efectivo</p>
+                <p class="text-gray-400 text-xs mt-1">En la clínica</p>
+              </button>
+            </div>
+
+            <div id="methodBody" class="border-t border-gray-800 pt-6"></div>
+
+            <div class="mt-6 flex items-start gap-2 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+              <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              <p class="text-xs text-gray-300">Pago 100% seguro. Tus datos están protegidos con encriptación SSL.</p>
+            </div>
+
+            <button id="btnPagar" class="btn-primary w-full justify-center mt-6 text-base">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              Pagar ${UI.formatPrice(precio)}
+            </button>
+          </div>
+        </section>
+      `;
+
+      let selectedMethod = 'yape';
+
+      function renderMethod() {
+        document.querySelectorAll('.method-card').forEach(c => {
+          c.classList.remove('border-primary');
+          c.classList.add('border-gray-800');
+          c.querySelector('.check-icon').classList.add('hidden');
+        });
+        const active = document.querySelector(`.method-card[data-metodo="${selectedMethod}"]`);
+        active.classList.add('border-primary');
+        active.classList.remove('border-gray-800');
+        active.querySelector('.check-icon').classList.remove('hidden');
+
+        const body = document.getElementById('methodBody');
+        if (selectedMethod === 'yape') {
+          body.innerHTML = `
+            <h4 class="text-white font-semibold mb-4">Paga con Yape o Plin</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-6 rounded-2xl flex flex-col items-center">
+                <div class="grid grid-cols-13 gap-1 mb-3" style="grid-template-columns: repeat(13, 1fr);">
+                  ${Array.from({length: 169}).map((_, i) => {
+                    const seed = (i * 7 + 3) % 11;
+                    return `<div class="aspect-square ${[1,3,4,6,7,9,11].includes(seed) ? 'bg-black' : 'bg-white'}"></div>`;
+                  }).join('')}
+                </div>
+                <p class="text-gray-800 font-bold">PFA-9210-3784</p>
+                <p class="text-gray-600 text-xs">Escanea o envía al número</p>
+              </div>
+              <div>
+                <p class="text-sm text-gray-300 mb-4">Una vez realizada la transferencia, confirma el pago ingresando el número de operación.</p>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Número de operación *</label>
+                <input type="text" id="yapeOp" maxlength="20" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="Ej: 123456789"/>
+                <label class="block text-sm font-medium text-gray-300 mb-2 mt-3">Tu número Yape/Plin</label>
+                <input type="tel" id="yapeTel" value="${UI.escape(user.telefono)}" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="+51 999 999 999"/>
+              </div>
+            </div>
+          `;
+        }
+        else if (selectedMethod === 'tarjeta') {
+          body.innerHTML = `
+            <h4 class="text-white font-semibold mb-4">Datos de tu tarjeta</h4>
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2">Nombre del titular *</label>
+              <input type="text" id="tarNombre" value="${UI.escape(user.nombre)}" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors uppercase"/>
+            </div>
+            <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-300 mb-2">Número de tarjeta *</label>
+              <div class="relative">
+                <input type="text" id="tarNumero" maxlength="19" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors pl-12" placeholder="1234 5678 9012 3456"/>
+                <svg class="h-5 w-5 text-gray-500 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Vencimiento (MM/AA) *</label>
+                <input type="text" id="tarVenc" maxlength="5" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="12/26"/>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">CVV *</label>
+                <input type="password" id="tarCvv" maxlength="4" class="w-full bg-background-dark border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" placeholder="123"/>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 mt-4">
+              <input type="checkbox" id="tarCuotas" class="h-4 w-4 rounded border-gray-600 text-primary focus:ring-primary bg-background-dark"/>
+              <label for="tarCuotas" class="text-sm text-gray-300">Pagar en 3 cuotas sin intereses</label>
+            </div>
+          `;
+        }
+        else if (selectedMethod === 'efectivo') {
+          body.innerHTML = `
+            <h4 class="text-white font-semibold mb-4">Pago en efectivo en clínica</h4>
+            <div class="bg-primary/5 border border-primary/30 rounded-xl p-5 flex items-start gap-3">
+              <span class="text-2xl">💵</span>
+              <div>
+                <p class="text-white font-medium mb-1">Pagarás al llegar a la clínica</p>
+                <p class="text-gray-400 text-sm">Aceptamos billetes y monedas en soles peruanos. Puedes acercarte a cancelar el monto total el día de tu cita.</p>
+              </div>
+            </div>
+            <div class="mt-4 p-4 bg-background-dark border border-gray-800 rounded-xl">
+              <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">Importante</p>
+              <ul class="text-sm text-gray-300 space-y-1">
+                <li class="flex items-start gap-2"><svg class="h-4 w-4 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Llega 10 min antes de tu cita</li>
+                <li class="flex items-start gap-2"><svg class="h-4 w-4 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Dirígete a recepción con tu código de reserva</li>
+                <li class="flex items-start gap-2"><svg class="h-4 w-4 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Te emitiremos comprobante de pago</li>
+              </ul>
+            </div>
+          `;
+        }
+      }
+
+      document.querySelectorAll('.method-card').forEach(c => {
+        c.addEventListener('click', () => {
+          selectedMethod = c.dataset.metodo;
+          renderMethod();
+        });
+      });
+
+      renderMethod();
+
+      document.getElementById('btnPagar').addEventListener('click', () => {
+        if (selectedMethod === 'yape') {
+          const op = document.getElementById('yapeOp').value.trim();
+          if (!op) { UI.toast('Ingresa el número de operación', 'error'); return; }
+          if (op.length < 6) { UI.toast('Número de operación inválido', 'error'); return; }
+        } else if (selectedMethod === 'tarjeta') {
+          const num = document.getElementById('tarNumero').value.replace(/\s/g, '');
+          const venc = document.getElementById('tarVenc').value;
+          const cvv = document.getElementById('tarCvv').value;
+          const nombre = document.getElementById('tarNombre').value.trim();
+          if (!nombre || !num || !venc || !cvv) { UI.toast('Completa todos los datos de la tarjeta', 'error'); return; }
+          if (num.length < 13) { UI.toast('Número de tarjeta inválido', 'error'); return; }
+          if (!/^\d{2}\/\d{2}$/.test(venc)) { UI.toast('Fecha de vencimiento inválida', 'error'); return; }
+          if (cvv.length < 3) { UI.toast('CVV inválido', 'error'); return; }
+        }
+
+        const btn = document.getElementById('btnPagar');
+        btn.disabled = true;
+        btn.innerHTML = '<svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Procesando...';
+
+        setTimeout(() => {
+          Reservas.update(reserva.id, { pago: 'pagado', metodoPago: selectedMethod, estado: 'confirmada' });
+          Reservas.setPagoDraft({ reservaId: reserva.id, metodo: selectedMethod });
+          window.location.href = 'payment-confirmed.html?reserva=' + reserva.id;
+        }, 1400);
+      });
+    }
+  </script>
+</body>
+</html>
