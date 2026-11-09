@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es-CL" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -74,7 +74,7 @@
       const especieIcon = reserva.mascota ? UI.especieById(reserva.mascota.especie)?.icon || '🐾' : '🐾';
 
       const metodoPagoLabel = reserva.metodoPago === 'tarjeta' ? 'Tarjeta de crédito/débito'
-        : reserva.metodoPago === 'yape' ? 'Yape/Plin'
+        : reserva.metodoPago === 'yape' ? 'Transferencia/Depósito'
         : reserva.metodoPago === 'efectivo' ? 'Efectivo en clínica'
         : null;
 
@@ -148,8 +148,8 @@
 
                 <div class="bg-background-dark border border-gray-800 rounded-xl p-5">
                   <p class="text-xs text-gray-400 uppercase tracking-wider mb-2">Ubicación</p>
-                  <p class="text-white text-sm">Av. Pardo y Aliaga 480<br/>San Isidro, Lima</p>
-                  <a href="https://maps.google.com/?q=Av.+Pardo+y+Aliaga+480+San+Isidro+Lima" target="_blank" class="text-primary text-xs hover:underline mt-2 inline-block">Ver en Google Maps →</a>
+                  <p class="text-white text-sm">Av. Pardo y Aliaga 480<br/>Las Condes, Santiago</p>
+                  <a href="https://maps.google.com/?q=Av.+Pardo+y+Aliaga+480+San+Isidro+Santiago" target="_blank" class="text-primary text-xs hover:underline mt-2 inline-block">Ver en Google Maps →</a>
                 </div>
 
                 ${canCancel ? `

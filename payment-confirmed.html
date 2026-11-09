@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es-CL" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,7 +78,7 @@
       const numOp = 'OP-' + Date.now().toString().slice(-10);
 
       const metodoLabel = reserva.metodoPago === 'tarjeta' ? 'Tarjeta de crédito/débito'
-        : reserva.metodoPago === 'yape' ? 'Yape / Plin'
+        : reserva.metodoPago === 'yape' ? 'Transferencia / Depósito'
         : reserva.metodoPago === 'efectivo' ? 'Efectivo en clínica'
         : '—';
 
